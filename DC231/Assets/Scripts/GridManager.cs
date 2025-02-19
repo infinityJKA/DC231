@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.Compression;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -13,7 +15,43 @@ public class GridManager : MonoBehaviour
         
     }
 
-    public void MakeGrid(){  // creates the grid
+    public void MakeGrid(List<TileRowSpawnData> rows){
+        tiles = new Dictionary<Vector2, Tile>();
+        int z = 0; // using z instead of y because of spawning in 3d space but just think of it like (x,y)
+        foreach(TileRowSpawnData row in rows){
+            int x = 0;
+            foreach(TileColSpawnData col in row.columnsInRow){
+                var spawnedTile = Instantiate(tilePrefab,new Vector3(x,0,z),Quaternion.identity);
+                spawnedTile.name = $"Tile {x},{z}";
+
+                var isOffset = (x%2 == 0 && z%2 !=0) || (x%2 != 0 && z%2 == 0); // Sets offset colors for testing
+                spawnedTile.Init(isOffset);
+
+                tiles[new Vector2(x,z)] = spawnedTile; // Adds the tile to dictionary for future reference     
+                
+                spawnedTile.x = x; // also store in tile itself for easier referencing
+                spawnedTile.y = z;       
+
+                spawnedTile.transform.parent = transform; // parent under the manager so it doesn't make the hierarchy look messy
+
+                if(col.entity != null){
+                    SpawnEntity(col.entity,x,z);
+                }
+
+                x++;
+            }
+            z++;
+        }
+    }
+
+    public void SpawnEntity(GameObject g, int x, int y){
+        g = Instantiate(g);
+        Tile t = GetTileAtPosition(x,y);
+        t.currentEntity = g;
+        t.MoveEntityToTile();
+    }
+
+    public void OldMakeGrid(){  // creates the grid (OUTDATED, this version does NOT use FloorSettings)
         tiles = new Dictionary<Vector2, Tile>();
         for(int x = 0; x < gridWidth; x++){
             for(int z= 0; z < gridHeight; z++){

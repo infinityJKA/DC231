@@ -6,5 +6,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FloorSettings", menuName = "Dungeon Crawler/FloorSettings")]
 public class FloorSettings : ScriptableObject
 {
-    public TileSpawnData[] floorLayout;
+    public List<TileRowSpawnData> floorLayout;
 }

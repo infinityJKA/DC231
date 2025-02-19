@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     [Header("Managers")]
     [SerializeField] GridManager gridManager;
+    [Header("Dungeon Data")]
+    [SerializeField] FloorSettings floorSettings;
 
     [Header("Player Stuff")]
     [SerializeField] GameObject playerEntityPrefab;
@@ -16,7 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject cam;
 
     void Start(){
-        gridManager.MakeGrid();
+        gridManager.MakeGrid(floorSettings.floorLayout);
         playerEntity = Instantiate(playerEntityPrefab);
         playerTile = gridManager.GetTileAtPosition(0,0);
         playerTile.currentEntity = playerEntity;

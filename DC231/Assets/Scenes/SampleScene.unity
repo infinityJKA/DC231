@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridManager: {fileID: 1137775560}
+  floorSettings: {fileID: 11400000, guid: 8a14cec97fca20c46a15fe51b57e7da6, type: 2}
   playerEntityPrefab: {fileID: 13348917408222216, guid: 178375e26afe8bc44b1783b5322e1773, type: 3}
   playerEntity: {fileID: 0}
   playerStats: {fileID: 468058194}
