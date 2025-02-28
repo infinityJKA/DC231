@@ -15,7 +15,7 @@ public class GridManager : MonoBehaviour
         
     }
 
-    public void MakeGrid(List<TileRowSpawnData> rows){
+    public void MakeGrid(List<TileRowSpawnData> rows, GameManager gm){
         tiles = new Dictionary<Vector2, Tile>();
         int z = 0; // using z instead of y because of spawning in 3d space but just think of it like (x,y)
         foreach(TileRowSpawnData row in rows){
@@ -35,7 +35,15 @@ public class GridManager : MonoBehaviour
                 spawnedTile.transform.parent = transform; // parent under the manager so it doesn't make the hierarchy look messy
 
                 if(col.entity != null){
-                    SpawnEntity(col.entity,x,z);
+                    if(col.entity.GetComponent<EnemyEntity>() != false){
+                        GameObject e = SpawnEntity(col.entity,x,z);
+                        gm.enemiesAlive.Add(e);
+                        e.GetComponent<EnemyEntity>().enemyTile = spawnedTile;
+                        spawnedTile.currentEntity = e;
+                    }
+                    else{
+                        spawnedTile.currentEntity = SpawnEntity(col.entity,x,z);
+                    }
                 }
 
                 x++;
@@ -44,11 +52,12 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public void SpawnEntity(GameObject g, int x, int y){
+    public GameObject SpawnEntity(GameObject g, int x, int y){
         g = Instantiate(g);
         Tile t = GetTileAtPosition(x,y);
         t.currentEntity = g;
         t.MoveEntityToTile();
+        return g;
     }
 
     public void OldMakeGrid(){  // creates the grid (OUTDATED, this version does NOT use FloorSettings)
