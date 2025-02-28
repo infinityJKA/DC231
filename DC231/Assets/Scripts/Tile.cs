@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -10,7 +11,7 @@ public class Tile : MonoBehaviour
    [SerializeField] private GameObject highlight;
    public GameObject currentEntity; // This is what is currently standing on this tile.
    public int x,y;
-   
+   [HideInInspector] public GameManager gm;
 
     public void Init(bool isOffset){
         meshRenderer.material.color = isOffset ? testColor1 : testColor2; // sets offset colors for testing
@@ -18,6 +19,15 @@ public class Tile : MonoBehaviour
 
     void OnMouseEnter(){
         highlight.SetActive(true);
+        if(currentEntity != null){
+            if(currentEntity.GetComponent<EnemyEntity>() == true){
+                EnemyEntity e = currentEntity.GetComponent<EnemyEntity>();
+                gm.tileInfoText.text = e.enemyName+"\n"+e.currentHP+"/"+e.maxHP+" HP\n"+e.currentMP+"/"+e.maxMP+" MP\n"+e.def+" DEF  "+e.res+" RES";
+            }
+        }
+        else{
+            gm.tileInfoText.text = "Empty tile";
+        }
     }
 
     void OnMouseExit(){

@@ -27,7 +27,9 @@ public class GridManager : MonoBehaviour
                 var isOffset = (x%2 == 0 && z%2 !=0) || (x%2 != 0 && z%2 == 0); // Sets offset colors for testing
                 spawnedTile.Init(isOffset);
 
-                tiles[new Vector2(x,z)] = spawnedTile; // Adds the tile to dictionary for future reference     
+                tiles[new Vector2(x,z)] = spawnedTile; // Adds the tile to dictionary for future reference  
+
+                spawnedTile.gm = gm;   
                 
                 spawnedTile.x = x; // also store in tile itself for easier referencing
                 spawnedTile.y = z;       
@@ -39,6 +41,7 @@ public class GridManager : MonoBehaviour
                         GameObject e = SpawnEntity(col.entity,x,z);
                         gm.enemiesAlive.Add(e);
                         e.GetComponent<EnemyEntity>().enemyTile = spawnedTile;
+                        e.GetComponent<EnemyEntity>().InitializeStats();
                         spawnedTile.currentEntity = e;
                     }
                     else{

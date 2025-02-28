@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +21,9 @@ public class GameManager : MonoBehaviour
     public PlayerStats playerStats;
     public Tile playerTile;
     [SerializeField] GameObject cam;
+
+    [Header("Misc")]
+    public TMP_Text tileInfoText;
 
     void Start(){
         enemiesAlive.Clear();
