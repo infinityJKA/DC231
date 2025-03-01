@@ -17,13 +17,14 @@ public class GameManager : MonoBehaviour
 
     [Header("Player Stuff")]
     [SerializeField] GameObject playerObjectPrefab;
-    public GameObject playerObject;
+    [HideInInspector] public GameObject playerObject;
     public PlayerStats playerStats;
-    public Tile playerTile;
+    [HideInInspector] public Tile playerTile;
     [SerializeField] GameObject cam;
 
     [Header("Misc")]
     public TMP_Text tileInfoText;
+    [SerializeField] float enemyActionDelay = 0.25f;
 
     void Start(){
         enemiesAlive.Clear();
@@ -38,17 +39,21 @@ public class GameManager : MonoBehaviour
 
     void Update(){
         if(controlState == ControlState.Player){ // checks if player can act
-            if(Input.GetKeyDown(KeyCode.RightArrow)){
+            if(Input.GetKeyDown(KeyCode.D)){
                 PlayerMove(1,0);
             }
-            else if(Input.GetKeyDown(KeyCode.LeftArrow)){
+            else if(Input.GetKeyDown(KeyCode.A)){
                 PlayerMove(-1,0);
             }
-            else if(Input.GetKeyDown(KeyCode.UpArrow)){
+            else if(Input.GetKeyDown(KeyCode.W)){
                 PlayerMove(0,1);
             }
-            else if(Input.GetKeyDown(KeyCode.DownArrow)){
+            else if(Input.GetKeyDown(KeyCode.S)){
                 PlayerMove(0,-1);
+            }
+            else if(Input.GetKeyDown(KeyCode.Z)){
+                Debug.Log("Player waited!");
+                PlayerTookAction();
             }
         }
     }
@@ -57,8 +62,16 @@ public class GameManager : MonoBehaviour
         controlState = ControlState.Enemy;
         if(enemiesAlive.Count > 0){
             currentEnemyTurn = 0;
-            StartCoroutine(EnemyTakeTurn(0.5f));
+            StartCoroutine(EnemyTakeTurn(enemyActionDelay));
         }
+        else{
+            EnemiesFinishedTurn();
+        }
+    }
+
+    private void EnemiesFinishedTurn(){
+        Debug.Log("Enemy turns finished, starting player turn");
+        controlState = ControlState.Player;
     }
 
     public void PlayerMove(int right, int up){
@@ -68,6 +81,10 @@ public class GameManager : MonoBehaviour
         }
         else if (t.currentEntity != null){
             Debug.Log("An entity is already standing at "+playerTile.x+right+", "+playerTile.y+right+"!");
+
+            if(t.currentEntity.GetComponent<EnemyEntity>() != null){ // perform basic attack if walking into enemy
+                PlayerPerformAttack(t.currentEntity.GetComponent<EnemyEntity>());
+            }
         }
         else{
             t.currentEntity = playerObject;
@@ -77,6 +94,17 @@ public class GameManager : MonoBehaviour
             SetCamToPlayer();
             PlayerTookAction();
         }
+    }
+
+    public void PlayerPerformAttack(EnemyEntity enem){
+        Debug.Log("Player attacking "+enem.enemyName+"!");
+        enem.currentHP -= 10; // Damage equation goes here, should be edited once we actually have equipment and stuff
+        if(enem.currentHP <= 0){
+            enemiesAlive.Remove(enem.gameObject);
+            enem.enemyTile.currentEntity = null;
+            Destroy(enem.gameObject);
+        }
+        PlayerTookAction();
     }
 
     public void SetCamToPlayer(){
@@ -105,6 +133,10 @@ public class GameManager : MonoBehaviour
     private IEnumerator EnemyTakeTurn(float delay){ // recursively(?) called for each enemy
 
         yield return new WaitForSeconds(delay); // causes the delay between enemy turns
+
+        if(enemiesAlive.Count <= 0){
+            EnemiesFinishedTurn();
+        }
 
         GameObject obj = enemiesAlive[currentEnemyTurn];
 
@@ -141,11 +173,11 @@ public class GameManager : MonoBehaviour
         
         currentEnemyTurn++;
         if(currentEnemyTurn >= enemiesAlive.Count){
-            controlState = ControlState.Player;
-            Debug.Log("Player turn!");
+            Debug.Log("All enemies have acted!");
+            EnemiesFinishedTurn();
         }
         else{
-            StartCoroutine(EnemyTakeTurn(0.5f));
+            StartCoroutine(EnemyTakeTurn(enemyActionDelay));
         }
     }
 
