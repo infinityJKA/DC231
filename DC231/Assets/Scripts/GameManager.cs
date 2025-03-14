@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("Managers")]
     [SerializeField] GridManager gridManager;
+    private Pathfinding pathfinding;
     public ControlState controlState;
     [Header("Dungeon Data")]
     [SerializeField] FloorSettings floorSettings;
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float enemyActionDelay = 0.25f;
 
     void Start(){
+        pathfinding = new Pathfinding();
         enemiesAlive.Clear();
         gridManager.MakeGrid(floorSettings.floorLayout,this);
         playerObject = Instantiate(playerObjectPrefab);
@@ -98,7 +101,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerPerformAttack(EnemyEntity enem){
         Debug.Log("Player attacking "+enem.enemyName+"!");
-        enem.currentHP -= 10; // Damage equation goes here, should be edited once we actually have equipment and stuff
+        enem.currentHP -= 3; // Damage equation goes here, should be edited once we actually have equipment and stuff
         if(enem.currentHP <= 0){
             enemiesAlive.Remove(enem.gameObject);
             enem.enemyTile.currentEntity = null;
@@ -147,28 +150,48 @@ public class GameManager : MonoBehaviour
         }
         // Check for valid walkable tiles if can't attack
         else{
-            List<Tile> movementOptions = new List<Tile>();
-            //Debug.Log(movementOptions.Count);
             Tile originalTile = obj.GetComponent<EnemyEntity>().enemyTile;
-            if(CheckIfTileIsValidWalk(1,0,originalTile)){movementOptions.Add(TileAddCord(1,0,originalTile));}
-            if(CheckIfTileIsValidWalk(-1,0,originalTile)){movementOptions.Add(TileAddCord(-1,0,originalTile));}
-            if(CheckIfTileIsValidWalk(0,1,originalTile)){movementOptions.Add(TileAddCord(0,1,originalTile));}
-            if(CheckIfTileIsValidWalk(0,-1,originalTile)){movementOptions.Add(TileAddCord(0,-1,originalTile));}
-            Debug.Log("Movement options: "+movementOptions.Count);
 
-            if(movementOptions.Count > 0){
-                int i = Random.Range(0,movementOptions.Count);
-                Tile t = movementOptions[i]; // chooses random option out of valid tiles to move onto
+            List<Tile> enemyPathfinding = pathfinding.Astar_Pathfind(originalTile.x,originalTile.y,playerTile.x,playerTile.y,gridManager,PathfindingOption.EnemyMove);
+            pathfinding.PrintTileList("Path",enemyPathfinding);
+
+            if(enemyPathfinding != null){
+                Tile t = enemyPathfinding[1]; // chooses the second item on pathfinding (first is the start tile) 
                 Debug.Log("Tile: "+t.x+","+t.y);
                 obj.GetComponent<EnemyEntity>().enemyTile.currentEntity = null; // removes enemy from the original tile
                 t.currentEntity = obj;  // sets the enemy to the new tile
                 t.MoveEntityToTile();  // physically moves the gameobject over the new tile
                 obj.GetComponent<EnemyEntity>().enemyTile = t;
-                Debug.Log("Enemy moved!");
+                Debug.Log("Enemy moved (walking towards player in vision)!");
             }
-            else{
-                Debug.Log("Enemy couldn't move!");
+            else{ // This means the enemy has no valid route towards the player
+                List<Tile> movementOptions = new List<Tile>();
+                //Debug.Log(movementOptions.Count);
+                
+                if(CheckIfTileIsValidWalk(1,0,originalTile)){movementOptions.Add(TileAddCord(1,0,originalTile));}
+                if(CheckIfTileIsValidWalk(-1,0,originalTile)){movementOptions.Add(TileAddCord(-1,0,originalTile));}
+                if(CheckIfTileIsValidWalk(0,1,originalTile)){movementOptions.Add(TileAddCord(0,1,originalTile));}
+                if(CheckIfTileIsValidWalk(0,-1,originalTile)){movementOptions.Add(TileAddCord(0,-1,originalTile));}
+                Debug.Log("Movement options: "+movementOptions.Count);
+
+                if(movementOptions.Count > 0){
+                    int i = Random.Range(0,movementOptions.Count);
+                    Tile t = movementOptions[i]; // chooses random option out of valid tiles to move onto
+                    Debug.Log("Tile: "+t.x+","+t.y);
+                    obj.GetComponent<EnemyEntity>().enemyTile.currentEntity = null; // removes enemy from the original tile
+                    t.currentEntity = obj;  // sets the enemy to the new tile
+                    t.MoveEntityToTile();  // physically moves the gameobject over the new tile
+                    obj.GetComponent<EnemyEntity>().enemyTile = t;
+                    Debug.Log("Enemy moved randomly (no valid path to player)!");
+                }
+                else{
+                    Debug.Log("Enemy couldn't move!");
+                }
             }
+
+
+
+            
         }
         
         currentEnemyTurn++;
@@ -180,6 +203,9 @@ public class GameManager : MonoBehaviour
             StartCoroutine(EnemyTakeTurn(enemyActionDelay));
         }
     }
+
+    
+
 
 }
 

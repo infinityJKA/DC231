@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 
 public class GridManager : MonoBehaviour
 {
-    [SerializeField] private int gridWidth, gridHeight;
+    public int gridWidth, gridHeight;
     [SerializeField] private Tile tilePrefab;
     private Dictionary<Vector2, Tile> tiles;
 
@@ -17,8 +17,12 @@ public class GridManager : MonoBehaviour
 
     public void MakeGrid(List<TileRowSpawnData> rows, GameManager gm){
         tiles = new Dictionary<Vector2, Tile>();
+        gridHeight = rows.Count;
+        gridWidth = 0;
         int z = 0; // using z instead of y because of spawning in 3d space but just think of it like (x,y)
         foreach(TileRowSpawnData row in rows){
+            //Debug.Log("columnsInRow: "+row.columnsInRow.Count);
+            if(row.columnsInRow.Count > gridWidth){gridWidth = row.columnsInRow.Count;}; // sets gridWidth
             int x = 0;
             foreach(TileColSpawnData col in row.columnsInRow){
                 var spawnedTile = Instantiate(tilePrefab,new Vector3(x,0,z),Quaternion.identity);
@@ -53,6 +57,8 @@ public class GridManager : MonoBehaviour
             }
             z++;
         }
+        Debug.Log("Grid Width: "+gridWidth);
+        Debug.Log("Grid Height: "+gridHeight);
     }
 
     public GameObject SpawnEntity(GameObject g, int x, int y){
