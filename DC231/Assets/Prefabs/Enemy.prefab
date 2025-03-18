@@ -50,8 +50,12 @@ MonoBehaviour:
   atk: 0
   def: 0
   res: 0
+  attackRange: 1
+  minAttackRange: 1
   currentHP: 0
   currentMP: 0
+  enemyName: 
+  enemyTile: {fileID: 0}
 --- !u!1 &677042578963929957
 GameObject:
   m_ObjectHideFlags: 0

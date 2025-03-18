@@ -49,22 +49,22 @@ public class Pathfinding
             // iterate through each neighbor
             foreach (Tile n in GetNeighborList(currentTile, grid)){
                 if(closedList.Contains(n)){ //move onto the next neighbor if this neighbor has already been checked/used
-                    Debug.Log("Invalid tile, already part of closedList "+n.x+","+n.y);
+                    //Debug.Log("Invalid tile, already part of closedList "+n.x+","+n.y);
                     continue;
                 }
-                if(n.currentEntity != null){ // move onto the next neighbor is something else is already standing here
+                if(n.currentEntity != null && pfo != PathfindingOption.AttackRange){ // move onto the next neighbor is something else is already standing here
                     if(pfo == PathfindingOption.EnemyMove && n == endTile){
-                        Debug.Log("Reached player!");
+                        //Debug.Log("Reached player!");
                     }
                     else{
-                        Debug.Log("Invalid tile, something already standing at "+n.x+","+n.y);
+                        //Debug.Log("Invalid tile, something already standing at "+n.x+","+n.y);
                         closedList.Add(n);
                         continue;
                     }
                 };
 
                 int tentativeGCost = currentTile.gCost + CalculateDistanceCost(currentTile,n);
-                Debug.Log("tenativeGCost "+tentativeGCost+"  <<vs>> neighbor gCost " + n.gCost);
+                //Debug.Log("tenativeGCost "+tentativeGCost+"  <<vs>> neighbor gCost " + n.gCost);
                 if(tentativeGCost < n.gCost){ // chooses the neighbor if it is more optimal
                     n.pathfindingCameFrom = currentTile;
                     n.gCost = tentativeGCost;
@@ -155,5 +155,6 @@ public class Pathfinding
 }
 
 public enum PathfindingOption{
-    EnemyMove // Tiles with entities are invalid other than playerTile
+    EnemyMove, // Tiles with entities are invalid other than playerTile
+    AttackRange // Ignores all entites, used to check if an attack can reach the player
 }

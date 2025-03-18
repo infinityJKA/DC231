@@ -89,12 +89,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void EnemiesFinishedTurn(){
-        Debug.Log("Enemy turns finished, starting player turn");
-        controlState = ControlState.Player;
+    private void EnemiesFinishedTurn(){ // this is called after all enemies finish acting
+        if(controlState == ControlState.GameOver){
+            Debug.Log("GAME OVER!");
+        }
+        else{
+            Debug.Log("Enemy turns finished, starting player turn");
+            controlState = ControlState.Player;
+        }
     }
 
-    public void PlayerMove(int right, int up){
+    public void PlayerMove(int right, int up){  // this is called when the player tries to move
         Tile t = gridManager.GetTileAtPosition(playerTile.x+right,playerTile.y+up);
         if(t == null){
             Debug.Log("No tile to move to!");
@@ -139,6 +144,9 @@ public class GameManager : MonoBehaviour
         else if (t.currentEntity != null){
             Debug.Log("An entity is already standing at "+playerTile.x+right+", "+playerTile.y+right+"!");
         }
+        else if(right == playerTile.x && up == playerTile.y){
+            Debug.Log("The player is standing here! Invalid move location!");
+        }
         else{
             return true;
         }
@@ -149,30 +157,47 @@ public class GameManager : MonoBehaviour
         return gridManager.GetTileAtPosition(tile.x+x,tile.y+y);
     }
 
+    public void CheckIfPlayerAlive(){
+        if(playerStats.currentHP <= 0){
+            controlState = ControlState.GameOver;
+            Destroy(playerObject.gameObject);
+            Debug.Log("Player has died!");
+        }
+    }
+
+    public void EnemyPerformAttack(Tile enemyTile){
+        // this will need to be modified once we decide stats and weapons and stuff
+        playerStats.currentHP -= enemyTile.currentEntity.GetComponent<EnemyEntity>().atk;
+        Debug.Log("Player got attacked by an enemy!");
+        CheckIfPlayerAlive();
+    }
+
 
     private IEnumerator EnemyTakeTurn(float delay){ // recursively(?) called for each enemy
 
         yield return new WaitForSeconds(delay); // causes the delay between enemy turns
 
-        if(enemiesAlive.Count <= 0){
+        if(enemiesAlive.Count <= 0 || controlState == ControlState.GameOver){
             EnemiesFinishedTurn();
         }
 
         GameObject obj = enemiesAlive[currentEnemyTurn];
 
-        // Check attack range and attack if valid here (not implemented yet)
-        if(false){
-            ////////////////////////////////////////////////////////////////////
-            //Debug.Log("HOW");
+        Tile originalTile = obj.GetComponent<EnemyEntity>().enemyTile;
+
+        // Check attack range and attack if valid here
+        List<Tile> attackDistance = pathfinding.Astar_Pathfind(originalTile.x,originalTile.y,playerTile.x,playerTile.y,gridManager,PathfindingOption.AttackRange);
+        Debug.Log("Distance to attack player: "+attackDistance.Count);
+        if(attackDistance.Count-1 >= obj.GetComponent<EnemyEntity>().minAttackRange && obj.GetComponent<EnemyEntity>().attackRange >= attackDistance.Count-1){
+            Debug.Log("Chose to attack");
+            EnemyPerformAttack(originalTile);
         }
         // Check for valid walkable tiles if can't attack
         else{
-            Tile originalTile = obj.GetComponent<EnemyEntity>().enemyTile;
-
             List<Tile> enemyPathfinding = pathfinding.Astar_Pathfind(originalTile.x,originalTile.y,playerTile.x,playerTile.y,gridManager,PathfindingOption.EnemyMove);
             pathfinding.PrintTileList("Path",enemyPathfinding);
 
-            if(enemyPathfinding != null){
+            if(enemyPathfinding != null && enemyPathfinding[1] != playerTile){
                 Tile t = enemyPathfinding[1]; // chooses the second item on pathfinding (first is the start tile) 
                 Debug.Log("Tile: "+t.x+","+t.y);
                 obj.GetComponent<EnemyEntity>().enemyTile.currentEntity = null; // removes enemy from the original tile
@@ -220,12 +245,8 @@ public class GameManager : MonoBehaviour
             StartCoroutine(EnemyTakeTurn(enemyActionDelay));
         }
     }
-
-    
-
-
 }
 
 public enum ControlState{
-    Player, Enemy
+    Player, Enemy, GameOver
 }

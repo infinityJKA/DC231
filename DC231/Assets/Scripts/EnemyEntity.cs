@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyEntity : MonoBehaviour
 {
-    public int maxHP, maxMP, atk, def, res;
+    public int maxHP, maxMP, atk, def, res, attackRange, minAttackRange;  // attackRange and minAttackRange are both inclusive
     
     [HideInInspector] public int currentHP, currentMP;
     public string enemyName;
