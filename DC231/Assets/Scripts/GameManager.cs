@@ -42,21 +42,38 @@ public class GameManager : MonoBehaviour
 
     void Update(){
         if(controlState == ControlState.Player){ // checks if player can act
-            if(Input.GetKeyDown(KeyCode.D)){
-                PlayerMove(1,0);
+
+            if(Input.GetKey(KeyCode.LeftShift)){ // diagonal movement inputs
+                if(Input.GetKeyDown(KeyCode.D) && Input.GetKey(KeyCode.S) || Input.GetKeyDown(KeyCode.S) && Input.GetKey(KeyCode.D)){  //down-right
+                    PlayerMove(1,-1);
+                }
+                else if(Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.S) || Input.GetKeyDown(KeyCode.S) && Input.GetKey(KeyCode.A)){  //down-left
+                    PlayerMove(-1,-1);
+                }
+                else if(Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.W) || Input.GetKeyDown(KeyCode.W) && Input.GetKey(KeyCode.A)){  // up-left
+                    PlayerMove(-1,1);
+                }
+                else if(Input.GetKeyDown(KeyCode.D) && Input.GetKey(KeyCode.W) || Input.GetKeyDown(KeyCode.W) && Input.GetKey(KeyCode.D)){  // up-right
+                    PlayerMove(1,1);
+                }
             }
-            else if(Input.GetKeyDown(KeyCode.A)){
-                PlayerMove(-1,0);
-            }
-            else if(Input.GetKeyDown(KeyCode.W)){
-                PlayerMove(0,1);
-            }
-            else if(Input.GetKeyDown(KeyCode.S)){
-                PlayerMove(0,-1);
-            }
-            else if(Input.GetKeyDown(KeyCode.Z)){
-                Debug.Log("Player waited!");
-                PlayerTookAction();
+            else{       // horizontal/vertical movement inputs
+                if(Input.GetKeyDown(KeyCode.D)){
+                    PlayerMove(1,0);
+                }
+                else if(Input.GetKeyDown(KeyCode.A)){
+                    PlayerMove(-1,0);
+                }
+                else if(Input.GetKeyDown(KeyCode.W)){
+                    PlayerMove(0,1);
+                }
+                else if(Input.GetKeyDown(KeyCode.S)){
+                    PlayerMove(0,-1);
+                }
+                else if(Input.GetKeyDown(KeyCode.Z)){
+                    Debug.Log("Player waited!");
+                    PlayerTookAction();
+                }
             }
         }
     }
