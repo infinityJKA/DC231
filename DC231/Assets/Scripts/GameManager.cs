@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public PlayerStats playerStats;
     [HideInInspector] public Tile playerTile;
     [SerializeField] GameObject cam;
+    [SerializeField] Vector3 camOffset;
 
     [Header("Misc")]
     public TMP_Text tileInfoText;
@@ -112,6 +113,7 @@ public class GameManager : MonoBehaviour
             }
         }
         else{
+            Debug.Log("Moving from "+playerTile.x+","+playerTile.y+" to "+t.x+","+t.y);
             t.currentEntity = playerObject;
             playerTile.currentEntity = null;
             playerTile = t;
@@ -133,7 +135,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void SetCamToPlayer(){
-        cam.transform.position = new Vector3(playerObject.transform.position.x,4,playerObject.transform.position.z-5);
+        cam.transform.position = new Vector3(playerObject.transform.position.x+camOffset.x,playerObject.transform.position.y+camOffset.y,playerObject.transform.position.z+camOffset.z);
     }
 
     public bool CheckIfTileIsValidWalk(int right, int up, Tile tile){  // Used in determining enemy movement

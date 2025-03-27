@@ -19,43 +19,43 @@ public class GridManager : MonoBehaviour
         tiles = new Dictionary<Vector2, Tile>();
         gridHeight = rows.Count;
         gridWidth = 0;
-        int z = 0; // using z instead of y because of spawning in 3d space but just think of it like (x,y)
+        int y = 0;
         foreach(TileRowSpawnData row in rows){
             //Debug.Log("columnsInRow: "+row.columnsInRow.Count);
             if(row.columnsInRow.Count > gridWidth){gridWidth = row.columnsInRow.Count;}; // sets gridWidth
             int x = 0;
             foreach(TileColSpawnData col in row.columnsInRow){
-                var spawnedTile = Instantiate(tilePrefab,new Vector3(x,0,z),Quaternion.identity);
-                spawnedTile.name = $"Tile {x},{z}";
+                var spawnedTile = Instantiate(tilePrefab,new Vector3(x,y,0),Quaternion.identity);
+                spawnedTile.name = $"Tile {x},{y}";
 
-                var isOffset = (x%2 == 0 && z%2 !=0) || (x%2 != 0 && z%2 == 0); // Sets offset colors for testing
+                var isOffset = (x%2 == 0 && y%2 !=0) || (x%2 != 0 && y%2 == 0); // Sets offset colors for testing
                 spawnedTile.Init(isOffset);
 
-                tiles[new Vector2(x,z)] = spawnedTile; // Adds the tile to dictionary for future reference  
+                tiles[new Vector2(x,y)] = spawnedTile; // Adds the tile to dictionary for future reference  
 
                 spawnedTile.gm = gm;   
                 
                 spawnedTile.x = x; // also store in tile itself for easier referencing
-                spawnedTile.y = z;       
+                spawnedTile.y = y;       
 
                 spawnedTile.transform.parent = transform; // parent under the manager so it doesn't make the hierarchy look messy
 
                 if(col.entity != null){
                     if(col.entity.GetComponent<EnemyEntity>() != false){
-                        GameObject e = SpawnEntity(col.entity,x,z);
+                        GameObject e = SpawnEntity(col.entity,x,y);
                         gm.enemiesAlive.Add(e);
                         e.GetComponent<EnemyEntity>().enemyTile = spawnedTile;
                         e.GetComponent<EnemyEntity>().InitializeStats();
                         spawnedTile.currentEntity = e;
                     }
                     else{
-                        spawnedTile.currentEntity = SpawnEntity(col.entity,x,z);
+                        spawnedTile.currentEntity = SpawnEntity(col.entity,x,y);
                     }
                 }
 
                 x++;
             }
-            z++;
+            y++;
         }
         Debug.Log("Grid Width: "+gridWidth);
         Debug.Log("Grid Height: "+gridHeight);

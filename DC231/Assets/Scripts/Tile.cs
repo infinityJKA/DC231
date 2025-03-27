@@ -6,8 +6,8 @@ using UnityEngine;
 [System.Serializable]
 public class Tile : MonoBehaviour
 {
-   [SerializeField] private Color testColor1, testColor2;
-   [SerializeField] private MeshRenderer meshRenderer;
+   //[SerializeField] private Color testColor1, testColor2;
+   [SerializeField] private SpriteRenderer spriteRenderer;
    [SerializeField] private GameObject highlight;
    public GameObject currentEntity; // This is what is currently standing on this tile.
    public int x,y;
@@ -18,7 +18,7 @@ public class Tile : MonoBehaviour
    public Tile pathfindingCameFrom;
 
     public void Init(bool isOffset){
-        meshRenderer.material.color = isOffset ? testColor1 : testColor2; // sets offset colors for testing
+        spriteRenderer.color = isOffset ? new Color(0f,0f,0f,1f) : new Color(0.2f,0.2f,0.2f,1f); // sets offset colors for testing
     }
 
     void OnMouseEnter(){
@@ -39,7 +39,7 @@ public class Tile : MonoBehaviour
     }
 
     public void MoveEntityToTile(){
-        currentEntity.transform.position = new Vector3(transform.position.x,currentEntity.transform.position.y,transform.position.z);
+        currentEntity.transform.position = new Vector3(transform.position.x,transform.position.y,transform.position.z);
     }
 
     public void CalculateFCost(){
