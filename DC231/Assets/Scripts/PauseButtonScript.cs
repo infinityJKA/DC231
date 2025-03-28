@@ -36,7 +36,7 @@ public class PauseButtonScript : MonoBehaviour
 
         if (inventorySystem != null)
         {
-            inventorySystem.SetActive(true);
+            inventorySystem.SetActive(false);
         }
 
         if (optionsSideBar != null)
