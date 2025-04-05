@@ -7,11 +7,11 @@ public class InventoryManager : MonoBehaviour
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 
-    int selectedGameSlot = -1;
+    public int selectedGameSlot = -1;
 
     private void Start()
     {
-        ChangeSelectedSlot(0);
+        //ChangeSelectedSlot(0);
     }
 
     private void Update()

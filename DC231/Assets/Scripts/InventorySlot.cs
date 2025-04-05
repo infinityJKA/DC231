@@ -11,7 +11,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
     private void Awake()
     {
-        Deselect();
+        //Deselect();
     }
 
     public void Select()

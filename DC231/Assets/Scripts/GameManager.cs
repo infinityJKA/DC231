@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [Header("Managers")]
     [SerializeField] GridManager gridManager;
     private Pathfinding pathfinding;
+    [SerializeField] InventoryManager inventory;
     public ControlState controlState;
     [Header("Dungeon Data")]
     [SerializeField] FloorSettings floorSettings;
@@ -123,9 +124,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public Item GetCurrentlyEquippedItem(){
+        if(inventory.selectedGameSlot < 0){
+            Debug.Log("Nothing equipped");
+            return null;
+        }
+        return inventory.inventorySlots[inventory.selectedGameSlot].GetComponentInChildren<InventoryItem>().item;
+    }
+
     public void PlayerPerformAttack(EnemyEntity enem){
         Debug.Log("Player attacking "+enem.enemyName+"!");
-        enem.currentHP -= 3; // Damage equation goes here, should be edited once we actually have equipment and stuff
+
+        int dmg = 1;
+        Item currentItem = GetCurrentlyEquippedItem();
+        if(currentItem != null ){
+            if(currentItem.type == ItemType.Weapon){
+                dmg += currentItem.atkModif;
+                Debug.Log(currentItem.name +" is equipped during attack!  DMG = "+dmg);
+            }
+        }
+        enem.currentHP -= dmg; // Damage equation goes here, should be edited once we actually have equipment and stuff
         if(enem.currentHP <= 0){
             enemiesAlive.Remove(enem.gameObject);
             enem.enemyTile.currentEntity = null;
