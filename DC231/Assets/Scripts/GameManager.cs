@@ -27,7 +27,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Vector3 camOffset;
 
     [Header("Misc")]
-    public TMP_Text tileInfoText;
+    public TMP_Text tileInfoText,logText,hpText;
+    public Tile currentTileHighlight = null;
     [SerializeField] float enemyActionDelay = 0.25f;
 
     void Start(){
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
         playerTile.currentEntity = playerObject;
         playerTile.MoveEntityToTile();
         SetCamToPlayer();
+        logText.text = "";
         controlState = ControlState.Player;
     }
 
@@ -59,7 +61,7 @@ public class GameManager : MonoBehaviour
                     PlayerMove(1,1);
                 }
             }
-            else{       // horizontal/vertical movement inputs
+            else{       // horizontal/vertical movement inputs plus other stuff
                 if(Input.GetKeyDown(KeyCode.D)){
                     PlayerMove(1,0);
                 }
@@ -75,6 +77,10 @@ public class GameManager : MonoBehaviour
                 else if(Input.GetKeyDown(KeyCode.Z)){
                     Debug.Log("Player waited!");
                     PlayerTookAction();
+                }
+                else if(Input.GetMouseButtonDown(1)){
+                    Debug.Log("Tried to attack with mouse click!");
+                    PlayerMouseAttack();
                 }
             }
         }
@@ -98,6 +104,32 @@ public class GameManager : MonoBehaviour
         else{
             Debug.Log("Enemy turns finished, starting player turn");
             controlState = ControlState.Player;
+        }
+    }
+
+    public void PlayerMouseAttack(){
+        if(currentTileHighlight != null){
+            if(currentTileHighlight.currentEntity != null & currentTileHighlight.isHoveredOver){
+                int dist = pathfinding.Astar_Pathfind(playerTile.x,playerTile.y,currentTileHighlight.x,currentTileHighlight.y,gridManager,PathfindingOption.AttackRange).Count - 1;
+                Debug.Log("PlayerMouseAttackDist = "+dist);
+                if(currentTileHighlight.currentEntity.GetComponent<EnemyEntity>()){
+                    if(GetCurrentlyEquippedItem() == null){
+                        if(dist == 1){
+                            PlayerPerformAttack(currentTileHighlight.currentEntity.GetComponent<EnemyEntity>());
+                        }
+                        Debug.Log("PlayerMouseAttack enemy is not in attack range (nothing equipped)");
+                    }
+                    else if(GetCurrentlyEquippedItem().range[0] <= dist & GetCurrentlyEquippedItem().range[1] >= dist){
+                        PlayerPerformAttack(currentTileHighlight.currentEntity.GetComponent<EnemyEntity>());
+                    }
+                    else{
+                        Debug.Log("PlayerMouseAttack enemy is not in attack range");
+                    }
+                }
+                else{
+                    Debug.Log("PlayerMouseAttack target is not an enemy");
+                }
+            }
         }
     }
 
@@ -143,12 +175,16 @@ public class GameManager : MonoBehaviour
                 Debug.Log(currentItem.name +" is equipped during attack!  DMG = "+dmg);
             }
         }
-        enem.currentHP -= dmg; // Damage equation goes here, should be edited once we actually have equipment and stuff
+        enem.currentHP -= dmg;
+        logText.text = logText.text + "\n= Attacked "+enem.enemyName+" for "+dmg+" dmg!";
         if(enem.currentHP <= 0){
             enemiesAlive.Remove(enem.gameObject);
             enem.enemyTile.currentEntity = null;
+            logText.text = logText.text + "\n= Defeated "+enem.enemyName+"!";
             Destroy(enem.gameObject);
+            
         }
+        UpdateUI();
         PlayerTookAction();
     }
 
@@ -182,13 +218,18 @@ public class GameManager : MonoBehaviour
             controlState = ControlState.GameOver;
             Destroy(playerObject.gameObject);
             Debug.Log("Player has died!");
+            logText.text = logText.text + "\n  [GAME OVER] You have died.";
         }
     }
 
     public void EnemyPerformAttack(Tile enemyTile){
         // this will need to be modified once we decide stats and weapons and stuff
-        playerStats.currentHP -= enemyTile.currentEntity.GetComponent<EnemyEntity>().atk;
+        EnemyEntity enem = enemyTile.currentEntity.GetComponent<EnemyEntity>();
+        int dmg = enem.atk;
+        playerStats.currentHP -= dmg;
+        logText.text = logText.text + "\n* "+enem.enemyName+" attacked you for "+dmg+" dmg!";
         Debug.Log("Player got attacked by an enemy!");
+        UpdateUI();
         CheckIfPlayerAlive();
     }
 
@@ -263,6 +304,13 @@ public class GameManager : MonoBehaviour
         }
         else{
             StartCoroutine(EnemyTakeTurn(enemyActionDelay));
+        }
+    }
+
+    public void UpdateUI(){
+        hpText.text = "HP: "+playerStats.currentHP+"/"+playerStats.maxHP;
+        if(currentTileHighlight != null){
+            currentTileHighlight.ShowTileStats();
         }
     }
 }
