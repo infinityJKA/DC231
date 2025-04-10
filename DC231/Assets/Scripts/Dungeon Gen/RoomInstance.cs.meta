@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 343b0685c8c066f45ad2b67a3d4d833b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - tex: {instanceID: 0}
+  - doorU: {instanceID: 0}
+  - doorD: {instanceID: 0}
+  - doorL: {instanceID: 0}
+  - doorR: {instanceID: 0}
+  - doorWall: {fileID: -2253911629886400664, guid: d29b914c5e345f44abcc3e2cb71454ff, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
