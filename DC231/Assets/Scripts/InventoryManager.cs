@@ -69,4 +69,20 @@ public class InventoryManager : MonoBehaviour
         }
         return null; // No item in the selected slot
     }
+
+    public void DeleteItem(InventoryItem item)
+    {
+        if (item != null)
+        {
+            Destroy(item.gameObject);
+        }
+        else
+        {
+            Debug.LogError("DeleteItem called with a null item.");
+        }
+    }
+
+
 }
+
+
