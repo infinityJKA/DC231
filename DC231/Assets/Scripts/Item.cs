@@ -15,7 +15,8 @@ public class Item : ScriptableObject
     public TileBase tile;
     public ItemType type;
     public ActionType actionType;
-    public Vector2Int range = new Vector2Int(5, 4);
+    public Vector2Int range = new Vector2Int(1, 1); // inclusive, [0] in min and [1] is max
+    public int atkModif;
 
     [Header("Only UI")]
     public bool stackable = true;

@@ -11,6 +11,7 @@ public class Tile : MonoBehaviour
    [SerializeField] private GameObject highlight;
    public GameObject currentEntity; // This is what is currently standing on this tile.
    public int x,y;
+   public bool isHoveredOver = false;
    [HideInInspector] public GameManager gm;
 
    [Header("A* Pathfinding")]
@@ -23,6 +24,12 @@ public class Tile : MonoBehaviour
 
     void OnMouseEnter(){
         highlight.SetActive(true);
+        gm.currentTileHighlight = this;
+        isHoveredOver = true;
+        ShowTileStats();
+    }
+
+    public void ShowTileStats(){
         if(currentEntity != null){
             if(currentEntity.GetComponent<EnemyEntity>() == true){
                 EnemyEntity e = currentEntity.GetComponent<EnemyEntity>();
@@ -36,6 +43,7 @@ public class Tile : MonoBehaviour
 
     void OnMouseExit(){
         highlight.SetActive(false);
+        isHoveredOver = false;
     }
 
     public void MoveEntityToTile(){
