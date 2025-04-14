@@ -7,7 +7,7 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
    //[SerializeField] private Color testColor1, testColor2;
-   [SerializeField] private SpriteRenderer spriteRenderer;
+   [SerializeField] public SpriteRenderer spriteRenderer;
    [SerializeField] private GameObject highlight;
    public GameObject currentEntity; // This is what is currently standing on this tile.
    public int x,y;
@@ -18,6 +18,10 @@ public class Tile : MonoBehaviour
    public int gCost,hCost,fCost;
    public Tile pathfindingCameFrom;
 
+    public void Init(){
+
+    }
+    
     public void Init(bool isOffset){
         spriteRenderer.color = isOffset ? new Color(0f,0f,0f,1f) : new Color(0.2f,0.2f,0.2f,1f); // sets offset colors for testing
     }

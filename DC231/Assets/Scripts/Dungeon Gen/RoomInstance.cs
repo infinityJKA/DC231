@@ -7,6 +7,10 @@ using UnityEngine;
 
 public class RoomInstance : MonoBehaviour
 {
+
+    // stores tiles after spawned
+    public List<GameObject> tiles;
+
     //stores the template data
     public Texture2D tex;
     [HideInInspector]
@@ -23,7 +27,7 @@ public class RoomInstance : MonoBehaviour
     [SerializeField]
 
     //Gathers information from the colors of the sprite sheet (Regular tile, wall, obstacle)
-    ColorToGameObject[] mappings;
+    public ColorToGameObject[] mappings;
     
     // the size of the tiles and the room in tiles
     float tileSize = 16;
@@ -88,6 +92,7 @@ public class RoomInstance : MonoBehaviour
         }
     }
 
+
     //this method generates the tile at the given position
     void GenerateTile(int x, int y)
     {
@@ -107,7 +112,9 @@ public class RoomInstance : MonoBehaviour
             {
 
                 Vector3 spawnPos = positionFromTileGrid(x, y-4);
-                Instantiate(mapping.prefab, spawnPos, Quaternion.identity).transform.parent = this.transform;
+                GameObject t = Instantiate(mapping.prefab, spawnPos, Quaternion.identity);
+                t.transform.parent = this.transform;
+                tiles.Add(t);
                
             }
         }

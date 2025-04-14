@@ -7,14 +7,15 @@ using UnityEngine;
 public class DungeonGeneratorV2 : MonoBehaviour
 {
     Vector2 worldSize = new Vector2(4, 4);
-    Room[,] rooms;
+    public Room[,] rooms;
+    public List<RoomInstance> roomInstances;
     List<Vector2> takenPositions = new List<Vector2>();
     int gridSizeX, gridSizeY, numberOfRooms = 20;
     public GameObject roomWhiteObj;
     public Transform mapRoot;
 
 
-    void Start()
+    public void DungeonGenStart()
     {
         if (numberOfRooms >= (worldSize.x * 2) * (worldSize.y * 2))
         { // make sure we dont try to make more rooms than can fit in our grid
@@ -25,7 +26,7 @@ public class DungeonGeneratorV2 : MonoBehaviour
         CreateRooms(); //lays out the actual map
         SetRoomDoors(); //assigns the doors where rooms would connect
         DrawMap(); //instantiates objects to make up a map
-        GetComponent<SheetAssigner>().Assign(rooms); //passes room info to another script which handles generatating the level geometry
+        roomInstances = GetComponent<SheetAssigner>().Assign(rooms); //passes room info to another script which handles generatating the level geometry
     }
 
     //this is the main method for creating the dungeon layout
@@ -189,7 +190,9 @@ public class DungeonGeneratorV2 : MonoBehaviour
             drawPos.x *= 16;//aspect ratio of map sprite
             drawPos.y *= 8;
             //create map obj and assign its variables
-            MapSpriteSelector mapper = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity).GetComponent<MapSpriteSelector>();
+            GameObject obj = Object.Instantiate(roomWhiteObj, drawPos, Quaternion.identity);
+            obj.transform.parent = transform;
+            MapSpriteSelector mapper = obj.GetComponent<MapSpriteSelector>();
             mapper.type = room.type;
             mapper.up = room.doorTop;
             mapper.down = room.doorBot;

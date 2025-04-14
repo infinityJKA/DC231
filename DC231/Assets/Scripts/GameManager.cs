@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     private Pathfinding pathfinding;
     [SerializeField] InventoryManager inventory;
     public ControlState controlState;
+    public DungeonGeneratorV2 dungeonGen;
     [Header("Dungeon Data")]
     [SerializeField] FloorSettings floorSettings;
     public List<GameObject> enemiesAlive;
@@ -34,9 +36,23 @@ public class GameManager : MonoBehaviour
     void Start(){
         pathfinding = new Pathfinding();
         enemiesAlive.Clear();
-        gridManager.MakeGrid(floorSettings.floorLayout,this);
+        dungeonGen.DungeonGenStart();
+        gridManager.MakeGridFromRooms(dungeonGen,this);
+        dungeonGen.gameObject.SetActive(false);
+        //gridManager.MakeGrid(floorSettings.floorLayout,this);
+        
+        bool notSpawned = true;
+        Tile tileToSpawnOn = null;
+        while(notSpawned){
+            int i = Random.Range(0,gridManager.tiles.Count);
+            if(gridManager.tiles.ElementAt(i).Value.currentEntity == null){
+                tileToSpawnOn = gridManager.tiles.ElementAt(i).Value;
+                notSpawned = false;
+            }
+        }
         playerObject = Instantiate(playerObjectPrefab);
-        playerTile = gridManager.GetTileAtPosition(0,0);
+        // playerTile = gridManager.GetTileAtPosition(0,0);
+        playerTile = tileToSpawnOn;
         playerTile.currentEntity = playerObject;
         playerTile.MoveEntityToTile();
         SetCamToPlayer();

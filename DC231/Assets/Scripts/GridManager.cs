@@ -9,10 +9,40 @@ public class GridManager : MonoBehaviour
 {
     public int gridWidth, gridHeight;
     [SerializeField] private Tile tilePrefab;
-    private Dictionary<Vector2, Tile> tiles;
+    public Dictionary<Vector2, Tile> tiles;
 
     void Start(){
         
+    }
+
+
+    public void MakeGridFromRooms(DungeonGeneratorV2 dungeon, GameManager gm){
+        tiles = new Dictionary<Vector2, Tile>();
+        foreach(RoomInstance room in dungeon.roomInstances){
+            foreach(GameObject t in room.tiles){
+                int x = (int)t.transform.position.x/16;
+                int y = (int)t.transform.position.y/16;
+
+                var spawnedTile = Instantiate(tilePrefab,new Vector3(x,y,0),Quaternion.identity);
+                spawnedTile.name = $"Tile {x},{y}";
+                //Debug.Log("spawning tile at "+x+","+y);
+
+                //var isOffset = (x%2 == 0 && y%2 !=0) || (x%2 != 0 && y%2 == 0); // Sets offset colors for testing
+                spawnedTile.Init();
+
+                tiles[new Vector2(x,y)] = spawnedTile; // Adds the tile to dictionary for future reference  
+
+                spawnedTile.gm = gm;   
+                
+                spawnedTile.x = x; // also store in tile itself for easier referencing
+                spawnedTile.y = y;       
+
+                spawnedTile.transform.parent = transform; // parent under the manager so it doesn't make the hierarchy look messy
+
+                Sprite s = t.GetComponent<SpriteRenderer>().sprite;
+                spawnedTile.spriteRenderer.sprite = s;
+            }
+        }
     }
 
     public void MakeGrid(List<TileRowSpawnData> rows, GameManager gm){
