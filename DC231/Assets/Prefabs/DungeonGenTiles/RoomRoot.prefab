@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343b0685c8c066f45ad2b67a3d4d833b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tiles: []
   tex: {fileID: 0}
   gridPos: {x: 0, y: 0}
   type: 0

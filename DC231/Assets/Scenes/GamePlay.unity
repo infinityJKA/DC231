@@ -783,6 +783,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 525860401303367042, guid: 23da5bcdb3550a14aa878c19371b7c26, type: 3}
+      propertyPath: gutterSize.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 525860401303367042, guid: 23da5bcdb3550a14aa878c19371b7c26, type: 3}
+      propertyPath: gutterSize.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 525860401303367042, guid: 23da5bcdb3550a14aa878c19371b7c26, type: 3}
+      propertyPath: sheetsNormal.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 525860401303367042, guid: 23da5bcdb3550a14aa878c19371b7c26, type: 3}
+      propertyPath: sheetsNormal.Array.data[3]
+      value: 
+      objectReference: {fileID: -8328923581568760697, guid: 07299721717e24845a759c0c38deb067, type: 3}
+    - target: {fileID: 525860401303367042, guid: 23da5bcdb3550a14aa878c19371b7c26, type: 3}
+      propertyPath: sheetsNormal.Array.data[4]
+      value: 
+      objectReference: {fileID: -8328923581568760697, guid: 5b303cd482a818a4ea2b7827d259a5b4, type: 3}
+    - target: {fileID: 525860401303367042, guid: 23da5bcdb3550a14aa878c19371b7c26, type: 3}
+      propertyPath: sheetsNormal.Array.data[5]
+      value: 
+      objectReference: {fileID: -8328923581568760697, guid: fd78cf1a3a5df1d41a20884d0c7881a0, type: 3}
     - target: {fileID: 2108354561853075853, guid: 23da5bcdb3550a14aa878c19371b7c26, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

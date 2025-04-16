@@ -47,7 +47,6 @@ public class RoomInstance : MonoBehaviour
         MakeDoors();
         GenerateRoomTiles();
     }
-
     //places the doors/walls in the room
     void MakeDoors()
     {
@@ -71,13 +70,18 @@ public class RoomInstance : MonoBehaviour
         // check whether its a door or wall, then spawn
         if (door)
         {
-            Instantiate(doorSpawn, spawnPos, Quaternion.identity).transform.parent = transform;
+            GameObject t = Instantiate(doorSpawn, spawnPos, Quaternion.identity);
+            t.transform.parent = transform;
+            tiles.Add(t);
         }
         else
         {
-            Instantiate(doorWall, spawnPos, Quaternion.identity).transform.parent = transform;
+            GameObject t = Instantiate(doorWall, spawnPos, Quaternion.identity);
+            t.transform.parent = transform;
+            tiles.Add(t);
         }
     }
+
 
     //this method generates the room tiles based on the texture
     void GenerateRoomTiles()

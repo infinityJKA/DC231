@@ -12,6 +12,7 @@ public class Tile : MonoBehaviour
    public GameObject currentEntity; // This is what is currently standing on this tile.
    public int x,y;
    public bool isHoveredOver = false;
+   public bool isWalkable = true; // if the tile is walkable or not
    [HideInInspector] public GameManager gm;
 
    [Header("A* Pathfinding")]
