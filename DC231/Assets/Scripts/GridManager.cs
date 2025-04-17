@@ -9,6 +9,7 @@ public class GridManager : MonoBehaviour
 {
     public int gridWidth, gridHeight;
     [SerializeField] private Tile tilePrefab;
+    [SerializeField] GameObject wallEntityPrefab;
     public Dictionary<Vector2, Tile> tiles;
 
     void Start(){
@@ -41,6 +42,16 @@ public class GridManager : MonoBehaviour
 
                 Sprite s = t.GetComponent<SpriteRenderer>().sprite;
                 spawnedTile.spriteRenderer.sprite = s;
+
+                if(t.GetComponent<TileCollision>() != null){
+                    Debug.Log("Has TileCollision property");
+                    if(t.GetComponent<TileCollision>().walkable == false){
+                        Debug.Log("IS NOT WALKABLE");
+                        GameObject w = SpawnEntity(wallEntityPrefab,x,y);
+                        spawnedTile.currentEntity = w;
+                        //w.transform.parent = spawnedTile.transform;
+                    }
+                }
             }
         }
     }

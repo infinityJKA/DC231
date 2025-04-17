@@ -2408,6 +2408,7 @@ MonoBehaviour:
   gridWidth: 8
   gridHeight: 5
   tilePrefab: {fileID: 6112136519783204319, guid: a1f695701c1123e468bb3084ab30e85d, type: 3}
+  wallEntityPrefab: {fileID: 13348917408222216, guid: ea1db0cb65cfd1d44aa6f1a78d8dd774, type: 3}
 --- !u!4 &1137775561
 Transform:
   m_ObjectHideFlags: 0
