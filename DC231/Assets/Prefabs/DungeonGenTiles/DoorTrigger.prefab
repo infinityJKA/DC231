@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8391486462769602859}
   - component: {fileID: 985603520266254293}
+  - component: {fileID: 249674559879334506}
   m_Layer: 0
   m_Name: DoorTrigger
   m_TagString: Untagged
@@ -84,3 +85,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &249674559879334506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6359021131648461397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96c9a01f7dc40174190e6b0c7fdc2bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkable: 0
