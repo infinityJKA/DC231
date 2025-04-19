@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] FloorSettings floorSettings;
     public List<GameObject> enemiesAlive;
     public int currentEnemyTurn = 0; // the index of the enemy that is currently taking its turn; 
+    public int dungeonFloor = 1;
+    public List<EnemyEntity> enemies1,enemies2,enemies3;
 
     [Header("Player Stuff")]
     [SerializeField] GameObject playerObjectPrefab;
@@ -31,15 +33,22 @@ public class GameManager : MonoBehaviour
     [Header("Misc")]
     public TMP_Text tileInfoText,logText,hpText;
     public Tile currentTileHighlight = null;
-    [SerializeField] float enemyActionDelay = 0.25f;
+    [SerializeField] float enemyActionDelay = 0f;
+
+    void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
 
     void Start(){
         pathfinding = new Pathfinding();
         enemiesAlive.Clear();
+
         dungeonGen.DungeonGenStart();
         gridManager.MakeGridFromRooms(dungeonGen,this);
         dungeonGen.gameObject.SetActive(false);
-        //gridManager.MakeGrid(floorSettings.floorLayout,this);
+        
+        // gridManager.MakeGrid(floorSettings.floorLayout,this);
         
         bool notSpawned = true;
         Tile tileToSpawnOn = null;
@@ -106,7 +115,8 @@ public class GameManager : MonoBehaviour
         controlState = ControlState.Enemy;
         if(enemiesAlive.Count > 0){
             currentEnemyTurn = 0;
-            StartCoroutine(EnemyTakeTurn(enemyActionDelay));
+            //StartCoroutine(EnemyTakeTurn(enemyActionDelay));
+            EnemyTakeTurn();
         }
         else{
             EnemiesFinishedTurn();
@@ -250,9 +260,9 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private IEnumerator EnemyTakeTurn(float delay){ // recursively(?) called for each enemy
-
-        yield return new WaitForSeconds(delay); // causes the delay between enemy turns
+    //private IEnumerator EnemyTakeTurn(float delay){ // recursively(?) called for each enemy
+    private void EnemyTakeTurn(){
+        //yield return new WaitForSeconds(delay); // causes the delay between enemy turns
 
         if(enemiesAlive.Count <= 0 || controlState == ControlState.GameOver){
             EnemiesFinishedTurn();
@@ -264,8 +274,15 @@ public class GameManager : MonoBehaviour
 
         // Check attack range and attack if valid here
         List<Tile> attackDistance = pathfinding.Astar_Pathfind(originalTile.x,originalTile.y,playerTile.x,playerTile.y,gridManager,PathfindingOption.AttackRange);
-        Debug.Log("Distance to attack player: "+attackDistance.Count);
-        if(attackDistance.Count-1 >= obj.GetComponent<EnemyEntity>().minAttackRange && obj.GetComponent<EnemyEntity>().attackRange >= attackDistance.Count-1){
+
+        if(attackDistance != null){
+            Debug.Log("Distance to attack player: "+attackDistance.Count);
+        }
+        else{
+            Debug.Log("No path to attack player");
+        }
+
+        if(attackDistance != null && attackDistance.Count-1 >= obj.GetComponent<EnemyEntity>().minAttackRange && obj.GetComponent<EnemyEntity>().attackRange >= attackDistance.Count-1){
             Debug.Log("Chose to attack");
             EnemyPerformAttack(originalTile);
         }
@@ -319,7 +336,8 @@ public class GameManager : MonoBehaviour
             EnemiesFinishedTurn();
         }
         else{
-            StartCoroutine(EnemyTakeTurn(enemyActionDelay));
+            //StartCoroutine(EnemyTakeTurn(enemyActionDelay));
+            EnemyTakeTurn();
         }
     }
 

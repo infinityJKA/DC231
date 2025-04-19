@@ -40,6 +40,9 @@ public class Tile : MonoBehaviour
                 EnemyEntity e = currentEntity.GetComponent<EnemyEntity>();
                 gm.tileInfoText.text = e.enemyName+"\n"+e.currentHP+"/"+e.maxHP+" HP\n"+e.currentMP+"/"+e.maxMP+" MP\n"+e.def+" DEF  "+e.res+" RES"+"\n("+x+","+y+")";
             }
+            else{
+                gm.tileInfoText.text = "Wall\n("+x+","+y+")";
+            }
         }
         else{
             gm.tileInfoText.text = "Empty tile\n("+x+","+y+")";

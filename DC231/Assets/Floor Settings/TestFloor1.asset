@@ -16,7 +16,7 @@ MonoBehaviour:
   - columnsInRow:
     - entity: {fileID: 0}
     - entity: {fileID: 0}
-    - entity: {fileID: 0}
+    - entity: {fileID: 13348917408222216, guid: ea1db0cb65cfd1d44aa6f1a78d8dd774, type: 3}
     - entity: {fileID: 0}
     - entity: {fileID: 0}
     - entity: {fileID: 0}

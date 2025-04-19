@@ -22,12 +22,14 @@ public class Pathfinding
         openList = new List<Tile>{startTile};             // tiles that haven't been checked
         closedList = new List<Tile>();                    // tiles that have been eliminated
 
-        for(int x = 0; x < grid.gridWidth; x++){          // reset previous calculations
-            for(int y = 0; y < grid.gridHeight; y++){
+        for(int x = grid.gridMinX; x < grid.gridMaxX; x++){          // reset previous calculations
+            for(int y = grid.gridMinY; y < grid.gridMaxY; y++){
                 Tile tile = grid.GetTileAtPosition(x,y);
-                tile.gCost = int.MaxValue;
-                tile.CalculateFCost();
-                tile.pathfindingCameFrom = null;
+                if(tile != null){
+                    tile.gCost = int.MaxValue;
+                    tile.CalculateFCost();
+                    tile.pathfindingCameFrom = null;
+                }
             }
         }
 
@@ -49,22 +51,28 @@ public class Pathfinding
             // iterate through each neighbor
             foreach (Tile n in GetNeighborList(currentTile, grid)){
                 if(closedList.Contains(n)){ //move onto the next neighbor if this neighbor has already been checked/used
-                    //Debug.Log("Invalid tile, already part of closedList "+n.x+","+n.y);
+                    if(n != null){Debug.Log("Invalid tile, already part of closedList "+n.x+","+n.y);}
+                    else{Debug.Log("Invalid tile, already part of closedList (NULL)");}
+                    continue;
+                }
+                if(n == null){
+                    Debug.Log("Invalid tile, is NULL (adding to closedList)");
+                    closedList.Add(n);
                     continue;
                 }
                 if(n.currentEntity != null && pfo != PathfindingOption.AttackRange){ // move onto the next neighbor is something else is already standing here
                     if(pfo == PathfindingOption.EnemyMove && n == endTile){
-                        //Debug.Log("Reached player!");
+                        Debug.Log("Reached player!");
                     }
                     else{
-                        //Debug.Log("Invalid tile, something already standing at "+n.x+","+n.y);
+                        Debug.Log("Invalid tile, something already standing at "+n.x+","+n.y);
                         closedList.Add(n);
                         continue;
                     }
                 };
 
                 int tentativeGCost = currentTile.gCost + CalculateDistanceCost(currentTile,n);
-                //Debug.Log("tenativeGCost "+tentativeGCost+"  <<vs>> neighbor gCost " + n.gCost);
+                Debug.Log("tenativeGCost "+tentativeGCost+"  <<vs>> neighbor gCost " + n.gCost);
                 if(tentativeGCost < n.gCost){ // chooses the neighbor if it is more optimal
                     n.pathfindingCameFrom = currentTile;
                     n.gCost = tentativeGCost;
@@ -86,26 +94,26 @@ public class Pathfinding
     private List<Tile> GetNeighborList(Tile currentTile, GridManager g){  // Returns a list of all neighboring tiles
         List<Tile> nl = new List<Tile>(); // Neighbor List
 
-        if(currentTile.x-1 >= 0){
+        if(currentTile.x-1 >= g.gridMinX){
             // Left
             nl.Add(g.GetTileAtPosition(currentTile.x-1, currentTile.y));
             // Left Down
-            if(currentTile.y-1 >= 0) nl.Add(g.GetTileAtPosition(currentTile.x-1, currentTile.y-1));
+            if(currentTile.y-1 >= g.gridMinY) nl.Add(g.GetTileAtPosition(currentTile.x-1, currentTile.y-1));
             // Left Up
-            if(currentTile.y+1 < g.gridHeight) nl.Add(g.GetTileAtPosition(currentTile.x-1, currentTile.y+1));
+            if(currentTile.y+1 <= g.gridMaxY) nl.Add(g.GetTileAtPosition(currentTile.x-1, currentTile.y+1));
         }
-        if(currentTile.x + 1 < g.gridWidth){
+        if(currentTile.x + 1 < g.gridMaxX){
             // Right
             nl.Add(g.GetTileAtPosition(currentTile.x+1, currentTile.y));
             // Right Down
-            if(currentTile.y-1 >= 0) nl.Add(g.GetTileAtPosition(currentTile.x+1, currentTile.y-1));
+            if(currentTile.y-1 >= g.gridMinY) nl.Add(g.GetTileAtPosition(currentTile.x+1, currentTile.y-1));
             // Right Up
-            if(currentTile.y+1 < g.gridHeight) nl.Add(g.GetTileAtPosition(currentTile.x+1, currentTile.y+1));
+            if(currentTile.y+1 <= g.gridMaxY) nl.Add(g.GetTileAtPosition(currentTile.x+1, currentTile.y+1));
         }
         // Down
-        if(currentTile.y-1 >= 0) nl.Add(g.GetTileAtPosition(currentTile.x, currentTile.y-1));
+        if(currentTile.y-1 >= g.gridMinY) nl.Add(g.GetTileAtPosition(currentTile.x, currentTile.y-1));
         // Up
-        if(currentTile.y+1 < g.gridHeight) nl.Add(g.GetTileAtPosition(currentTile.x, currentTile.y+1));
+        if(currentTile.y+1 <= g.gridMaxY) nl.Add(g.GetTileAtPosition(currentTile.x, currentTile.y+1));
 
         return nl;
     }
@@ -147,7 +155,12 @@ public class Pathfinding
         else{
             String s = title+": ";
             foreach(Tile t in path){
-                s = s + "("+t.x+","+t.y+") ";
+                if(t == null){
+                    s = s + "(null) ";
+                }
+                else{
+                    s = s + "("+t.x+","+t.y+") ";
+                }
             }
             Debug.Log(s);
         }
