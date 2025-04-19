@@ -17,7 +17,8 @@ public class Pathfinding
     // Code based on https://www.youtube.com/watch?v=alU04hvz6L4 but modified to fit the preexisting code architecture
     public List<Tile> Astar_Pathfind(int startX, int startY, int endX, int endY, GridManager grid, PathfindingOption pfo, int MaxDistance){
         
-        if(Math.Abs(startX - endX) + Math.Abs(startY - endY) > MaxDistance + 4){
+        int md = Math.Abs(startX - endX) + Math.Abs(startY - endY);
+        if(md > MaxDistance * 2){
             Debug.Log("Manhatten distance greater than MaxDistance, returning null");
             return null;
         }
@@ -45,7 +46,9 @@ public class Pathfinding
         startTile.CalculateFCost();
 
         while(openList.Count > 0){ // Loops through each neighbor until reaching the target or failing
+
             Tile currentTile = GetLowestFCostTile(openList);
+
             if(currentTile == endTile){
                 // This means it has reached the final node
                 return CalculatePath(endTile);
@@ -77,6 +80,11 @@ public class Pathfinding
                         continue;
                     }
                 };
+                if(CalculatePath(n).Count > md+1){
+                    Debug.Log("Potential path would be tool long, cutting");
+                    closedList.Add(n);
+                    continue;
+                }
 
                 int tentativeGCost = currentTile.gCost + CalculateDistanceCost(currentTile,n);
                 Debug.Log("tenativeGCost "+tentativeGCost+"  <<vs>> neighbor gCost " + n.gCost);

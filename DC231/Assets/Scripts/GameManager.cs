@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
         if(currentTileHighlight != null){
             if(currentTileHighlight.currentEntity != null & currentTileHighlight.isHoveredOver){
                 int minRange = 0;
-                int maxRange = 0;
+                int maxRange = 1;
                 if(GetCurrentlyEquippedItem() != null){
                     maxRange = GetCurrentlyEquippedItem().range[1];
                     minRange = GetCurrentlyEquippedItem().range[0];
