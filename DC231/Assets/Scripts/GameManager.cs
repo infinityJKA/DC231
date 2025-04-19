@@ -136,7 +136,19 @@ public class GameManager : MonoBehaviour
     public void PlayerMouseAttack(){
         if(currentTileHighlight != null){
             if(currentTileHighlight.currentEntity != null & currentTileHighlight.isHoveredOver){
-                int dist = pathfinding.Astar_Pathfind(playerTile.x,playerTile.y,currentTileHighlight.x,currentTileHighlight.y,gridManager,PathfindingOption.AttackRange).Count - 1;
+                int minRange = 0;
+                int maxRange = 0;
+                if(GetCurrentlyEquippedItem() != null){
+                    maxRange = GetCurrentlyEquippedItem().range[1];
+                    minRange = GetCurrentlyEquippedItem().range[0];
+                }
+
+                List<Tile> tiles = pathfinding.Astar_Pathfind(playerTile.x,playerTile.y,currentTileHighlight.x,currentTileHighlight.y,gridManager,PathfindingOption.AttackRange, maxRange);
+                if(tiles == null){
+                    Debug.Log("Too far to attack");
+                    return;
+                }
+                int dist = tiles.Count - 1;
                 Debug.Log("PlayerMouseAttackDist = "+dist);
                 if(currentTileHighlight.currentEntity.GetComponent<EnemyEntity>()){
                     if(GetCurrentlyEquippedItem() == null){
@@ -145,7 +157,7 @@ public class GameManager : MonoBehaviour
                         }
                         Debug.Log("PlayerMouseAttack enemy is not in attack range (nothing equipped)");
                     }
-                    else if(GetCurrentlyEquippedItem().range[0] <= dist & GetCurrentlyEquippedItem().range[1] >= dist){
+                    else if(minRange <= dist & maxRange >= dist){
                         PlayerPerformAttack(currentTileHighlight.currentEntity.GetComponent<EnemyEntity>());
                     }
                     else{
@@ -273,7 +285,7 @@ public class GameManager : MonoBehaviour
         Tile originalTile = obj.GetComponent<EnemyEntity>().enemyTile;
 
         // Check attack range and attack if valid here
-        List<Tile> attackDistance = pathfinding.Astar_Pathfind(originalTile.x,originalTile.y,playerTile.x,playerTile.y,gridManager,PathfindingOption.AttackRange);
+        List<Tile> attackDistance = pathfinding.Astar_Pathfind(originalTile.x,originalTile.y,playerTile.x,playerTile.y,gridManager,PathfindingOption.AttackRange, obj.GetComponent<EnemyEntity>().attackRange);
 
         if(attackDistance != null){
             Debug.Log("Distance to attack player: "+attackDistance.Count);
@@ -288,7 +300,7 @@ public class GameManager : MonoBehaviour
         }
         // Check for valid walkable tiles if can't attack
         else{
-            List<Tile> enemyPathfinding = pathfinding.Astar_Pathfind(originalTile.x,originalTile.y,playerTile.x,playerTile.y,gridManager,PathfindingOption.EnemyMove);
+            List<Tile> enemyPathfinding = pathfinding.Astar_Pathfind(originalTile.x,originalTile.y,playerTile.x,playerTile.y,gridManager,PathfindingOption.EnemyMove, obj.GetComponent<EnemyEntity>().vision);
             pathfinding.PrintTileList("Path",enemyPathfinding);
 
             if(enemyPathfinding != null && enemyPathfinding[1] != playerTile){

@@ -15,9 +15,16 @@ public class Pathfinding
     private List<Tile> closedList;
 
     // Code based on https://www.youtube.com/watch?v=alU04hvz6L4 but modified to fit the preexisting code architecture
-    public List<Tile> Astar_Pathfind(int startX, int startY, int endX, int endY, GridManager grid, PathfindingOption pfo){
+    public List<Tile> Astar_Pathfind(int startX, int startY, int endX, int endY, GridManager grid, PathfindingOption pfo, int MaxDistance){
+        
+        if(Math.Abs(startX - endX) + Math.Abs(startY - endY) > MaxDistance + 4){
+            Debug.Log("Manhatten distance greater than MaxDistance, returning null");
+            return null;
+        }
+
         Tile startTile = grid.GetTileAtPosition(startX,startY);
         Tile endTile = grid.GetTileAtPosition(endX,endY);
+
 
         openList = new List<Tile>{startTile};             // tiles that haven't been checked
         closedList = new List<Tile>();                    // tiles that have been eliminated
