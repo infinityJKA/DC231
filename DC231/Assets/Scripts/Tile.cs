@@ -62,4 +62,6 @@ public class Tile : MonoBehaviour
         fCost = gCost + hCost;
     }
 
+    
+
 }

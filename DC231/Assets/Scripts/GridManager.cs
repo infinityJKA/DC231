@@ -64,6 +64,12 @@ public class GridManager : MonoBehaviour
             }
         }
 
+        // destory all children (old tiles)
+        foreach(Transform t in dungeon.transform){
+            Destroy(t.gameObject);
+        }
+
+        // spawn enemies
         int enemiesToSpawn = Random.Range(10,15);
         List<EnemyEntity> enems = new List<EnemyEntity>();
         for(int i = 0; i < enemiesToSpawn; i++){
@@ -165,6 +171,14 @@ public class GridManager : MonoBehaviour
         }
         Debug.Log("No tile found at pos "+posX+", "+posY);
         return null;
+    }
+
+    public void ResetCalc(){
+        foreach(var item in tiles){
+            item.Value.gCost = int.MaxValue;
+            item.Value.CalculateFCost();
+            item.Value.pathfindingCameFrom = null;
+        }
     }
 
 

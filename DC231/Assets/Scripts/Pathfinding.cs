@@ -30,16 +30,7 @@ public class Pathfinding
         openList = new List<Tile>{startTile};             // tiles that haven't been checked
         closedList = new List<Tile>();                    // tiles that have been eliminated
 
-        for(int x = grid.gridMinX; x < grid.gridMaxX; x++){          // reset previous calculations
-            for(int y = grid.gridMinY; y < grid.gridMaxY; y++){
-                Tile tile = grid.GetTileAtPosition(x,y);
-                if(tile != null){
-                    tile.gCost = int.MaxValue;
-                    tile.CalculateFCost();
-                    tile.pathfindingCameFrom = null;
-                }
-            }
-        }
+        grid.ResetCalc();
 
         startTile.gCost = 0;  // initialize values for the starting node
         startTile.hCost = CalculateDistanceCost(startTile, endTile);
@@ -87,7 +78,7 @@ public class Pathfinding
                 }
 
                 int tentativeGCost = currentTile.gCost + CalculateDistanceCost(currentTile,n);
-                Debug.Log("tenativeGCost "+tentativeGCost+"  <<vs>> neighbor gCost " + n.gCost);
+                //Debug.Log("tenativeGCost "+tentativeGCost+"  <<vs>> neighbor gCost " + n.gCost);
                 if(tentativeGCost < n.gCost){ // chooses the neighbor if it is more optimal
                     n.pathfindingCameFrom = currentTile;
                     n.gCost = tentativeGCost;
