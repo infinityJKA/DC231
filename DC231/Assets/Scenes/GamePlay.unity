@@ -1004,7 +1004,6 @@ GameObject:
   m_Component:
   - component: {fileID: 468058196}
   - component: {fileID: 468058195}
-  - component: {fileID: 468058194}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1012,20 +1011,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &468058194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468058193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3df95c3d603c61499487f5d47343def, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHP: 20
-  maxHP: 20
 --- !u!114 &468058195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1039,13 +1024,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridManager: {fileID: 1137775560}
-  inventory: {fileID: 1643206046}
   controlState: 0
   dungeonGen: {fileID: 65969490}
   floorSettings: {fileID: 11400000, guid: 8a14cec97fca20c46a15fe51b57e7da6, type: 2}
   enemiesAlive: []
   currentEnemyTurn: 0
-  dungeonFloor: 1
   enemies1:
   - {fileID: 6328045308044967830, guid: 22b70e1ecc45faa46ae786ce97a42d58, type: 3}
   - {fileID: 6328045308044967830, guid: 163c0fd4dfb10c340857fbfe03b39da0, type: 3}
@@ -1054,13 +1037,10 @@ MonoBehaviour:
   enemies3: []
   playerObjectPrefab: {fileID: 13348917408222216, guid: 178375e26afe8bc44b1783b5322e1773, type: 3}
   playerObject: {fileID: 0}
-  playerStats: {fileID: 468058194}
+  playerStats: {fileID: 0}
   playerTile: {fileID: 0}
   cam: {fileID: 937935638}
   camOffset: {x: 0, y: 0, z: -8}
-  tileInfoText: {fileID: 2095426697}
-  logText: {fileID: 1507484383}
-  hpText: {fileID: 35725132}
   currentTileHighlight: {fileID: 0}
   enemyActionDelay: 0.25
 --- !u!4 &468058196
@@ -1075,9 +1055,7 @@ Transform:
   m_LocalPosition: {x: 18.273405, y: 7.3814306, z: -28.353485}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1137775561}
-  - {fileID: 1643206047}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &469036005
@@ -1414,6 +1392,59 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &835812303
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 835812305}
+  - component: {fileID: 835812304}
+  m_Layer: 0
+  m_Name: PlayerStats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &835812304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835812303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3df95c3d603c61499487f5d47343def, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHP: 20
+  maxHP: 20
+  dungeonFloor: 1
+  inventory: {fileID: 1643206046}
+  tileInfoText: {fileID: 2095426697}
+  logText: {fileID: 1507484383}
+  hpText: {fileID: 35725132}
+--- !u!4 &835812305
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835812303}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.282942, y: -3.167067, z: -0.3286917}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1643206047}
+  - {fileID: 1533366680}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &865081634
@@ -2414,8 +2445,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c594b4e8bfa8194facf2f822009aae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridWidth: 8
-  gridHeight: 5
+  gridMinX: 0
+  gridMaxX: 0
+  gridMinY: 0
+  gridMaxY: 0
   tilePrefab: {fileID: 6112136519783204319, guid: a1f695701c1123e468bb3084ab30e85d, type: 3}
   wallEntityPrefab: {fileID: 13348917408222216, guid: ea1db0cb65cfd1d44aa6f1a78d8dd774, type: 3}
 --- !u!4 &1137775561
@@ -2427,11 +2460,11 @@ Transform:
   m_GameObject: {fileID: 1137775559}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.53921, y: -7.2735977, z: 28.543806}
+  m_LocalPosition: {x: -0.2658043, y: 0.10783291, z: 0.19032097}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 468058196}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1286799720
 GameObject:
@@ -3396,7 +3429,7 @@ RectTransform:
   - {fileID: 1286799721}
   - {fileID: 429602808}
   - {fileID: 469036006}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 835812305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3454,11 +3487,11 @@ Transform:
   m_GameObject: {fileID: 1643206045}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 554.28577, y: 273.78848, z: 183.31758}
+  m_LocalPosition: {x: 566.2762, y: 284.33698, z: 155.29279}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 468058196}
+  m_Father: {fileID: 835812305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1702025463
 GameObject:
@@ -4299,8 +4332,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 937935641}
-  - {fileID: 1533366680}
   - {fileID: 705507995}
   - {fileID: 468058196}
+  - {fileID: 1137775561}
   - {fileID: 717017339}
   - {fileID: 340190225}
+  - {fileID: 835812305}

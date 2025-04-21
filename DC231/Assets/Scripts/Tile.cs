@@ -38,14 +38,14 @@ public class Tile : MonoBehaviour
         if(currentEntity != null){
             if(currentEntity.GetComponent<EnemyEntity>() == true){
                 EnemyEntity e = currentEntity.GetComponent<EnemyEntity>();
-                gm.tileInfoText.text = e.enemyName+"\n"+e.currentHP+"/"+e.maxHP+" HP\n"+e.currentMP+"/"+e.maxMP+" MP\n"+e.def+" DEF  "+e.res+" RES"+"\n("+x+","+y+")";
+                gm.playerStats.tileInfoText.text = e.enemyName+"\n"+e.currentHP+"/"+e.maxHP+" HP\n"+e.currentMP+"/"+e.maxMP+" MP\n"+e.def+" DEF  "+e.res+" RES"+"\n("+x+","+y+")";
             }
             else{
-                gm.tileInfoText.text = "Wall\n("+x+","+y+")";
+                gm.playerStats.tileInfoText.text = "Wall\n("+x+","+y+")";
             }
         }
         else{
-            gm.tileInfoText.text = "Empty tile\n("+x+","+y+")";
+            gm.playerStats.tileInfoText.text = "Empty tile\n("+x+","+y+")";
         }
     }
 

@@ -12,14 +12,12 @@ public class GameManager : MonoBehaviour
     [Header("Managers")]
     [SerializeField] GridManager gridManager;
     private Pathfinding pathfinding;
-    [SerializeField] InventoryManager inventory;
     public ControlState controlState;
     public DungeonGeneratorV2 dungeonGen;
     [Header("Dungeon Data")]
     [SerializeField] FloorSettings floorSettings;
     public List<GameObject> enemiesAlive;
     public int currentEnemyTurn = 0; // the index of the enemy that is currently taking its turn; 
-    public int dungeonFloor = 1;
     public List<EnemyEntity> enemies1,enemies2,enemies3;
 
     [Header("Player Stuff")]
@@ -31,14 +29,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Vector3 camOffset;
 
     [Header("Misc")]
-    public TMP_Text tileInfoText,logText,hpText;
     public Tile currentTileHighlight = null;
     [SerializeField] float enemyActionDelay = 0f;
-
-    void Awake()
-    {
-        DontDestroyOnLoad(this);
-    }
 
     void Start(){
         pathfinding = new Pathfinding();
@@ -48,6 +40,8 @@ public class GameManager : MonoBehaviour
         gridManager.MakeGridFromRooms(dungeonGen,this);
         dungeonGen.gameObject.SetActive(false);
         
+        playerStats = PlayerStats.instance;
+
         // gridManager.MakeGrid(floorSettings.floorLayout,this);
         
         bool notSpawned = true;
@@ -65,7 +59,7 @@ public class GameManager : MonoBehaviour
         playerTile.currentEntity = playerObject;
         playerTile.MoveEntityToTile();
         SetCamToPlayer();
-        logText.text = "";
+        playerStats.logText.text = "";
         controlState = ControlState.Player;
     }
 
@@ -195,11 +189,11 @@ public class GameManager : MonoBehaviour
     }
 
     public Item GetCurrentlyEquippedItem(){
-        if(inventory.selectedGameSlot < 0){
+        if(playerStats.inventory.selectedGameSlot < 0){
             Debug.Log("Nothing equipped");
             return null;
         }
-        return inventory.inventorySlots[inventory.selectedGameSlot].GetComponentInChildren<InventoryItem>().item;
+        return playerStats.inventory.inventorySlots[playerStats.inventory.selectedGameSlot].GetComponentInChildren<InventoryItem>().item;
     }
 
     public void PlayerPerformAttack(EnemyEntity enem){
@@ -214,11 +208,11 @@ public class GameManager : MonoBehaviour
             }
         }
         enem.currentHP -= dmg;
-        logText.text = logText.text + "\n= Attacked "+enem.enemyName+" for "+dmg+" dmg!";
+        playerStats.logText.text = playerStats.logText.text + "\n= Attacked "+enem.enemyName+" for "+dmg+" dmg!";
         if(enem.currentHP <= 0){
             enemiesAlive.Remove(enem.gameObject);
             enem.enemyTile.currentEntity = null;
-            logText.text = logText.text + "\n= Defeated "+enem.enemyName+"!";
+            playerStats.logText.text = playerStats.logText.text + "\n= Defeated "+enem.enemyName+"!";
             Destroy(enem.gameObject);
             
         }
@@ -256,7 +250,7 @@ public class GameManager : MonoBehaviour
             controlState = ControlState.GameOver;
             Destroy(playerObject.gameObject);
             Debug.Log("Player has died!");
-            logText.text = logText.text + "\n  [GAME OVER] You have died.";
+            playerStats.logText.text = playerStats.logText.text + "\n  [GAME OVER] You have died.";
         }
     }
 
@@ -265,7 +259,7 @@ public class GameManager : MonoBehaviour
         EnemyEntity enem = enemyTile.currentEntity.GetComponent<EnemyEntity>();
         int dmg = enem.atk;
         playerStats.currentHP -= dmg;
-        logText.text = logText.text + "\n* "+enem.enemyName+" attacked you for "+dmg+" dmg!";
+        playerStats.logText.text = playerStats.logText.text + "\n* "+enem.enemyName+" attacked you for "+dmg+" dmg!";
         Debug.Log("Player got attacked by an enemy!");
         UpdateUI();
         CheckIfPlayerAlive();
@@ -354,7 +348,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void UpdateUI(){
-        hpText.text = "HP: "+playerStats.currentHP+"/"+playerStats.maxHP;
+        playerStats.hpText.text = "HP: "+playerStats.currentHP+"/"+playerStats.maxHP;
         if(currentTileHighlight != null){
             currentTileHighlight.ShowTileStats();
         }
