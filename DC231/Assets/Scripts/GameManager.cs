@@ -6,6 +6,9 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+
 
 public class GameManager : MonoBehaviour
 {
@@ -59,8 +62,14 @@ public class GameManager : MonoBehaviour
         playerTile.currentEntity = playerObject;
         playerTile.MoveEntityToTile();
         SetCamToPlayer();
-        playerStats.logText.text = "";
+        playerStats.logText.text = "[Entered Dungeon Floor "+playerStats.dungeonFloor+"!]";
         controlState = ControlState.Player;
+    }
+
+    private void NextFloor(){
+        controlState = ControlState.LoadingGame;
+        playerStats.dungeonFloor += 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void Update(){
@@ -176,6 +185,11 @@ public class GameManager : MonoBehaviour
             if(t.currentEntity.GetComponent<EnemyEntity>() != null){ // perform basic attack if walking into enemy
                 PlayerPerformAttack(t.currentEntity.GetComponent<EnemyEntity>());
             }
+            else if(t.currentEntity.GetComponent<floorExit>() != null){
+                NextFloor();
+                return;
+            }
+
         }
         else{
             Debug.Log("Moving from "+playerTile.x+","+playerTile.y+" to "+t.x+","+t.y);
@@ -356,5 +370,5 @@ public class GameManager : MonoBehaviour
 }
 
 public enum ControlState{
-    Player, Enemy, GameOver
+    Player, Enemy, GameOver, LoadingGame
 }

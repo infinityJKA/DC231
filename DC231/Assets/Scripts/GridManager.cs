@@ -11,7 +11,7 @@ public class GridManager : MonoBehaviour
     //public int gridWidth, gridHeight;
     public int gridMinX,gridMaxX,gridMinY,gridMaxY;
     [SerializeField] private Tile tilePrefab;
-    [SerializeField] GameObject wallEntityPrefab;
+    [SerializeField] GameObject wallEntityPrefab, floorExitPrefab;
     public Dictionary<Vector2, Tile> tiles;
 
     void Start(){
@@ -69,11 +69,13 @@ public class GridManager : MonoBehaviour
             Destroy(t.gameObject);
         }
 
+        bool isSpawned = false;
+
         // spawn enemies
         int enemiesToSpawn = Random.Range(10,15);
         List<EnemyEntity> enems = new List<EnemyEntity>();
         for(int i = 0; i < enemiesToSpawn; i++){
-            bool isSpawned = false;
+            isSpawned = false;
             while(!isSpawned){
                 Tile t = tiles.ElementAt(Random.Range(0,tiles.Count-1)).Value;
                 if(t.currentEntity == null && t != gm.playerTile){
@@ -86,6 +88,18 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
+
+        // spawn exit
+        isSpawned = false;
+        while(!isSpawned){
+            Tile t = tiles.ElementAt(Random.Range(0,tiles.Count-1)).Value;
+            if(t.currentEntity == null && t != gm.playerTile){
+                GameObject e = SpawnEntity(floorExitPrefab,t.x,t.y);
+                t.currentEntity = e;
+                isSpawned = true;
+            }
+        }
+
 
     }
 
