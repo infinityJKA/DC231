@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4661437953153590617}
   - component: {fileID: -584581665261997255}
   - component: {fileID: -91568738983978296}
+  - component: {fileID: 2167873974210815628}
   m_Layer: 0
   m_Name: FloorTile
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 512703719281356545, guid: 1e8473b74494696499e1bf29ce292782, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_Size: {x: 16, y: 16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &-91568738983978296
@@ -98,3 +99,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
+--- !u!114 &2167873974210815628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3139799916753159590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93fd87fd3ea20144bc559d3d9832462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: -584581665261997255}
+  spriteSets:
+  - {fileID: 11400000, guid: 281f89325bd779e40a05f245b5262ded, type: 2}
+  dungeonLevel: 0
