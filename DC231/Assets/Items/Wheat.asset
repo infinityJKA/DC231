@@ -16,5 +16,7 @@ MonoBehaviour:
   type: 0
   actionType: 0
   range: {x: 5, y: 4}
+  atkModif: 0
   stackable: 1
+  itemName: Wheat
   image: {fileID: 21300000, guid: 20de56b8bade76d44bffe45213fddefe, type: 3}

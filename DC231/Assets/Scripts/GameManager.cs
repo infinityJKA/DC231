@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> enemiesAlive;
     public int currentEnemyTurn = 0; // the index of the enemy that is currently taking its turn; 
     public List<EnemyEntity> enemies1,enemies2,enemies3;
+    public List<Item> items1,items2,items3;
 
     [Header("Player Stuff")]
     [SerializeField] GameObject playerObjectPrefab;
@@ -180,7 +181,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("No tile to move to!");
         }
         else if (t.currentEntity != null){
-            Debug.Log("An entity is already standing at "+playerTile.x+right+", "+playerTile.y+right+"!");
+            Debug.Log("An entity is already standing at "+playerTile.x+right+", "+playerTile.y+up+"!");
 
             if(t.currentEntity.GetComponent<EnemyEntity>() != null){ // perform basic attack if walking into enemy
                 PlayerPerformAttack(t.currentEntity.GetComponent<EnemyEntity>());
@@ -188,6 +189,26 @@ public class GameManager : MonoBehaviour
             else if(t.currentEntity.GetComponent<floorExit>() != null){
                 NextFloor();
                 return;
+            }
+            else if(t.currentEntity.GetComponent<Chest>() != null){
+                Debug.Log("Item = "+t.currentEntity.GetComponent<Chest>().item.itemName);
+                bool added = playerStats.inventory.AddItem(t.currentEntity.GetComponent<Chest>().item);
+                if(added){
+                    playerStats.logText.text = playerStats.logText.text + "\nFound "+t.currentEntity.GetComponent<Chest>().item.itemName+"!";
+                    Destroy(t.currentEntity.gameObject);
+                    t.currentEntity = null;
+
+                    Debug.Log("Moving from "+playerTile.x+","+playerTile.y+" to "+t.x+","+t.y);
+                    t.currentEntity = playerObject;
+                    playerTile.currentEntity = null;
+                    playerTile = t;
+                    t.MoveEntityToTile();
+                    SetCamToPlayer();
+                    PlayerTookAction();
+                }
+                else{
+                    playerStats.logText.text = playerStats.logText.text + "\nINVENTORY IS FULL";
+                }
             }
 
         }

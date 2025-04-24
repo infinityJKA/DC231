@@ -11,6 +11,7 @@ public class GridManager : MonoBehaviour
     //public int gridWidth, gridHeight;
     public int gridMinX,gridMaxX,gridMinY,gridMaxY;
     [SerializeField] private Tile tilePrefab;
+    [SerializeField] private Chest chestPrefab;
     [SerializeField] GameObject wallEntityPrefab, floorExitPrefab;
     public Dictionary<Vector2, Tile> tiles;
 
@@ -73,7 +74,6 @@ public class GridManager : MonoBehaviour
 
         // spawn enemies
         int enemiesToSpawn = Random.Range(10,15);
-        List<EnemyEntity> enems = new List<EnemyEntity>();
         for(int i = 0; i < enemiesToSpawn; i++){
             isSpawned = false;
             while(!isSpawned){
@@ -88,6 +88,24 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
+
+
+        // spawn chests
+        int chestsToSpawn = Random.Range(3,6);
+        for(int i = 0; i < chestsToSpawn; i++){
+            isSpawned = false;
+            while(!isSpawned){
+                Tile t = tiles.ElementAt(Random.Range(0,tiles.Count-1)).Value;
+                if(t.currentEntity == null && t != gm.playerTile){
+                    var chest = Instantiate(chestPrefab,new Vector2(t.x,t.y),Quaternion.identity);
+                    chest.item = gm.items1[Random.Range(0,gm.items1.Count)];
+                    t.currentEntity = chest.gameObject;
+                    isSpawned = true;
+                }
+            }
+        }
+
+
 
         // spawn exit
         isSpawned = false;

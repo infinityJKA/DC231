@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ public class Item : ScriptableObject
 
     [Header("Only UI")]
     public bool stackable = true;
+    public String itemName;
 
     [Header("Both")]
     public Sprite image;
