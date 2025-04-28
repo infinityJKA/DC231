@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler,IPointerEnterHandler,IPointerExitHandler
 {
     void Start()
     {
@@ -25,9 +25,29 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Image image;
     public Text countText;
 
-    [HideInInspector] public Item item;
+    public Item item;
     [HideInInspector] public int count = 1;
     [HideInInspector] public Transform parentAfterDrag;
+
+    void IPointerExitHandler.OnPointerExit(PointerEventData eventData){
+        PlayerStats.instance.hoveringOverInventory = false;
+    }
+
+    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData){
+        PlayerStats.instance.hoveringOverInventory = true;
+        if(item.type == ItemType.Weapon){
+            PlayerStats.instance.tileInfoText.text = item.itemName+"\n+"+item.atkModif+" ATK\n"+item.range[0]+"-"+item.range[1]+" range";
+        }
+        else{
+            if(item.hpIncreaseAmount > 0){
+                PlayerStats.instance.tileInfoText.text = item.itemName+"\nGain "+item.hpIncreaseAmount+" Max HP";
+            }
+            else{
+                PlayerStats.instance.tileInfoText.text = item.itemName+"\nHeal "+item.healAmount+" HP";
+            }
+        }
+            
+    }
 
     public void InitialiseItem(Item newItem)
     {

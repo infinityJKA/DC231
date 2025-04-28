@@ -13,6 +13,7 @@ public class PlayerStats : MonoBehaviour
     public static PlayerStats instance;
     public GameObject gameplayUI;
     public GameObject gameOverMenu;
+    public bool hoveringOverInventory = false;
 
     public void ResetPlayerStats(){
         currentHP = 20;

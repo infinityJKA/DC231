@@ -161,12 +161,42 @@ public class GameManager : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
     public void PlayerMouseAttack()
     {
         if (currentTileHighlight != null)
         {
             if (currentTileHighlight.currentEntity != null & currentTileHighlight.isHoveredOver)
             {
+=======
+    public void UseConsumableItem(){
+        Item i = GetCurrentlyEquippedItem();
+        if(i.hpIncreaseAmount > 0){
+            playerStats.maxHP += i.hpIncreaseAmount;
+            playerStats.logText.text = playerStats.logText.text + "\n= Used "+i.itemName+"!\n<Max HP increased by "+i.hpIncreaseAmount+">";
+        }
+        else{
+            playerStats.currentHP += i.healAmount;
+            if(playerStats.currentHP > playerStats.maxHP){playerStats.currentHP = playerStats.maxHP;}
+
+            playerStats.logText.text = playerStats.logText.text + "\n< Used "+i.itemName+" to heal HP.";
+        }
+        playerStats.UpdateHPText();
+        playerStats.inventory.DeleteItem(playerStats.inventory.inventorySlots[playerStats.inventory.selectedGameSlot].GetComponentInChildren<InventoryItem>());
+        PlayerTookAction();
+    }
+
+    public void PlayerMouseAttack(){
+        bool usedConsumable = false;
+        if(GetCurrentlyEquippedItem() != null){
+            if(GetCurrentlyEquippedItem().type == ItemType.Consumable){
+                usedConsumable = true;
+                UseConsumableItem();
+            }
+        }
+        if(currentTileHighlight != null && !usedConsumable){
+            if(currentTileHighlight.currentEntity != null & currentTileHighlight.isHoveredOver){
+>>>>>>> Stashed changes
                 int minRange = 0;
                 int maxRange = 1;
                 if (GetCurrentlyEquippedItem() != null)
@@ -272,6 +302,9 @@ public class GameManager : MonoBehaviour
         if (playerStats.inventory.selectedGameSlot < 0)
         {
             Debug.Log("Nothing equipped");
+            return null;
+        }
+        if(playerStats.inventory.inventorySlots[playerStats.inventory.selectedGameSlot].GetComponentInChildren<InventoryItem>() == null){
             return null;
         }
         return playerStats.inventory.inventorySlots[playerStats.inventory.selectedGameSlot].GetComponentInChildren<InventoryItem>().item;

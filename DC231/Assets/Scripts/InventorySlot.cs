@@ -4,17 +4,47 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InventorySlot : MonoBehaviour, IDropHandler
+public class InventorySlot : MonoBehaviour, IDropHandler//, IPointerEnterHandler, IPointerExitHandler
 {
     public Image image;
     public Color selectedColor, notSelectedColor;
 
     public InventoryManager inventoryManager;
+    //[SerializeField] BoxCollider2D collision;
 
     private void Awake()
     {
         //Deselect();
     }
+
+    // void IPointerExitHandler.OnPointerExit(PointerEventData eventData){
+    //     PlayerStats.instance.hoveringOverInventory = false;
+    // }
+
+    // void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData){
+    //     PlayerStats.instance.hoveringOverInventory = true;
+    //     if(transform.childCount == 0){
+    //         PlayerStats.instance.tileInfoText.text = "Empty inventory slot";
+    //     }
+    //     else{
+    //         // need to try/catch bc trash can
+    //         try{
+    //             Item i = transform.GetComponentInChildren<Item>();
+    //             if(i.type == ItemType.Weapon){
+    //                 PlayerStats.instance.tileInfoText.text = i.itemName+"\n+"+i.atkModif+" ATK\n"+i.range[0]+"-"+i.range[1]+" range";
+    //             }
+    //             else{
+    //                 if(i.hpIncreaseAmount > 0){
+    //                     PlayerStats.instance.tileInfoText.text = i.itemName+"\nGain"+i.hpIncreaseAmount+" Max HP";
+    //                 }
+    //                 else{
+    //                     PlayerStats.instance.tileInfoText.text = i.itemName+"\nHeal"+i.healAmount+" HP";
+    //                 }
+    //             }
+    //         }
+    //         catch{return;}
+    //     }
+    // }
 
     public void Select()
     {

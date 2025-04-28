@@ -28,6 +28,8 @@ public class Tile : MonoBehaviour
     }
 
     void OnMouseEnter(){
+        if(PlayerStats.instance.hoveringOverInventory){return;}
+        
         highlight.SetActive(true);
         gm.currentTileHighlight = this;
         isHoveredOver = true;
