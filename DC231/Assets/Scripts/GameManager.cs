@@ -162,6 +162,7 @@ public class GameManager : MonoBehaviour
     }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     public void PlayerMouseAttack()
     {
         if (currentTileHighlight != null)
@@ -169,6 +170,8 @@ public class GameManager : MonoBehaviour
             if (currentTileHighlight.currentEntity != null & currentTileHighlight.isHoveredOver)
             {
 =======
+=======
+>>>>>>> Stashed changes
     public void UseConsumableItem(){
         Item i = GetCurrentlyEquippedItem();
         if(i.hpIncreaseAmount > 0){
