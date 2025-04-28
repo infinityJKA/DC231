@@ -65,6 +65,8 @@ public class GameManager : MonoBehaviour
         SetCamToPlayer();
         playerStats.logText.text = "[Entered Dungeon Floor "+playerStats.dungeonFloor+"!]";
         controlState = ControlState.Player;
+
+        AudioManager.Instance.PlayMusic("Theme");
     }
 
     private void NextFloor(){
@@ -242,6 +244,7 @@ public class GameManager : MonoBehaviour
             playerTile.currentEntity = null;
             playerTile = t;
             t.MoveEntityToTile();
+            AudioManager.Instance.PlaySFX("FootStep");
             SetCamToPlayer();
             PlayerTookAction();
         }
@@ -260,6 +263,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayerPerformAttack(EnemyEntity enem){
         Debug.Log("Player attacking "+enem.enemyName+"!");
+        AudioManager.Instance.PlaySFX("Swing");
 
         int dmg = 1;
         Item currentItem = GetCurrentlyEquippedItem();
@@ -314,6 +318,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Player has died!");
             playerStats.logText.text = playerStats.logText.text + "\n  [GAME OVER] You have died.";
 
+            AudioManager.Instance.FadeOutMusicAndPlay("GameOver");
             playerStats.gameplayUI.SetActive(false);
             playerStats.gameOverMenu.SetActive(true);
 
@@ -327,6 +332,7 @@ public class GameManager : MonoBehaviour
         playerStats.currentHP -= dmg;
         playerStats.logText.text = playerStats.logText.text + "\n* "+enem.enemyName+" attacked you for "+dmg+" dmg!";
         Debug.Log("Player got attacked by an enemy!");
+        AudioManager.Instance.PlaySFX("EnemyAttack");
         UpdateUI();
         CheckIfPlayerAlive();
     }
