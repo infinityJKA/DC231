@@ -11,11 +11,14 @@ public class PlayerStats : MonoBehaviour
     public InventoryManager inventory;
     public TMP_Text tileInfoText,logText,hpText;
     public static PlayerStats instance;
+    public GameObject gameplayUI;
+    public GameObject gameOverMenu;
 
     public void ResetPlayerStats(){
         currentHP = 20;
         maxHP = 20;
         dungeonFloor = 1;
+        inventory.ResetInventory();
     }
 
     void Awake()
@@ -27,6 +30,10 @@ public class PlayerStats : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+    }
+
+    public void UpdateHPText(){
+        hpText.text = "HP: "+currentHP+"/"+maxHP;
     }
 
 }

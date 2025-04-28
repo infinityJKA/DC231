@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -79,6 +81,16 @@ public class InventoryManager : MonoBehaviour
         else
         {
             Debug.LogError("DeleteItem called with a null item.");
+        }
+    }
+
+    public void ResetInventory(){
+        for(int i = 0; i < inventorySlots.Length-1; i++){
+            InventoryItem itemInSlot = inventorySlots[i].GetComponentInChildren<InventoryItem>();
+            if (itemInSlot != null)
+            {
+                Destroy(itemInSlot.gameObject);
+            }
         }
     }
 

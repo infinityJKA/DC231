@@ -11,4 +11,16 @@ public class ChangeScene : MonoBehaviour
     {
         SceneManager.LoadScene(TargetScene);
     }
+
+    public void GameStartStats(){
+        if(PlayerStats.instance != null){
+            PlayerStats.instance.gameplayUI.SetActive(true);
+            PlayerStats.instance.ResetPlayerStats();
+            PlayerStats.instance.UpdateHPText();
+        }
+    }
+
+    public void HideGameplayUI(){
+        PlayerStats.instance.gameplayUI.SetActive(false);
+    }
 }
