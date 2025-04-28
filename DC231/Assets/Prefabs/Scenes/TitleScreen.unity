@@ -586,8 +586,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSounds:
   - name: Theme
-    clip: {fileID: 8300000, guid: 2f2faf499ec806d42a020318efeeb964, type: 3}
-  sfxSounds: []
+    clip: {fileID: 8300000, guid: a03c66fbdcb71414d93346da44e75602, type: 3}
+  - name: DungeonTheme
+    clip: {fileID: 8300000, guid: a1159c51ed80eb246b1d4639573a1e50, type: 3}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: af2251b3351b8ba45a493f0eadb4b4ac, type: 3}
+  sfxSounds:
+  - name: ChestOpen
+    clip: {fileID: 8300000, guid: ec79dffb448329642bfd606d972aef68, type: 3}
+  - name: EnemyAttack
+    clip: {fileID: 8300000, guid: caf7e6de658d9ca47a12646b20bb961a, type: 3}
+  - name: FootStep
+    clip: {fileID: 8300000, guid: 2ed62f1b7cb40e54d96e1cde98d73442, type: 3}
+  - name: Swing
+    clip: {fileID: 8300000, guid: 8e1cd42e3ccd04b4b87b748f8861955c, type: 3}
   musicSource: {fileID: 921154937}
   sfxSource: {fileID: 490090990}
 --- !u!4 &622124777
