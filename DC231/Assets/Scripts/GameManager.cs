@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
     public Tile currentTileHighlight = null;
     [SerializeField] float enemyActionDelay = 0f;
 
+    [Header("Game Over")]
+    public GameOverScript gameOverScript;
+
     void Start(){
         pathfinding = new Pathfinding();
         enemiesAlive.Clear();
@@ -286,6 +289,16 @@ public class GameManager : MonoBehaviour
             Destroy(playerObject.gameObject);
             Debug.Log("Player has died!");
             playerStats.logText.text = playerStats.logText.text + "\n  [GAME OVER] You have died.";
+
+            //Activate the game over screen
+            if (gameOverScript != null)
+            {
+                gameOverScript.ActivateGameOverScreen();
+            }
+            else
+            {
+                Debug.LogError("GameOverScript is not assigned in the GameManager.");
+            }
         }
     }
 
