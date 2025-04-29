@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5853450573566213850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7539984970354151669}
+  - component: {fileID: 4979717196800682687}
+  - component: {fileID: 6207910927202006481}
+  m_Layer: 6
+  m_Name: DungeonGeneratorV2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7539984970354151669
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853450573566213850}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4979717196800682687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853450573566213850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac63ecc10a31bf844bf7a8d94a058800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomInstances: []
+  roomWhiteObj: {fileID: 7347607997584152006, guid: ef9feb5bc86ac34498a78395478f7cd2, type: 3}
+  mapRoot: {fileID: 0}
+--- !u!114 &6207910927202006481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853450573566213850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae2238232adda2e4c939ed20b4c0e4ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sheetsNormal:
+  - {fileID: -8328923581568760697, guid: ba982a4a75b5bf548bdf09030fa1bf60, type: 3}
+  - {fileID: -8328923581568760697, guid: c6ab0db76d6586a4a8b8216b28e4f738, type: 3}
+  - {fileID: -8328923581568760697, guid: 7a21be10a857b184e987dea25620e6a2, type: 3}
+  - {fileID: -8328923581568760697, guid: 07299721717e24845a759c0c38deb067, type: 3}
+  - {fileID: -8328923581568760697, guid: 5b303cd482a818a4ea2b7827d259a5b4, type: 3}
+  - {fileID: -8328923581568760697, guid: fd78cf1a3a5df1d41a20884d0c7881a0, type: 3}
+  RoomObj: {fileID: 8110749005090263772, guid: 8905c2305916b2a4aa51075fe12fd277, type: 3}
+  roomDimensions: {x: 272, y: 144}
+  gutterSize: {x: 0, y: 0}
