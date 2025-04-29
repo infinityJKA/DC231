@@ -1606,6 +1606,9 @@ MonoBehaviour:
   gameplayUI: {fileID: 1533366676}
   gameOverMenu: {fileID: 2011859987}
   hoveringOverInventory: 0
+  biomes:
+  - {fileID: 11400000, guid: d15a6a741ba119442b445d906ef0b17b, type: 2}
+  biomeIndex: 0
 --- !u!4 &835812305
 Transform:
   m_ObjectHideFlags: 0

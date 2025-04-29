@@ -113,7 +113,10 @@ MonoBehaviour:
   mappings:
   - color: {r: 0, g: 0, b: 0, a: 1}
     prefab: {fileID: 8122281513472041216, guid: 3843b2c0491cd284192160c55a970789, type: 3}
+    objType: 1
   - color: {r: 0, g: 0, b: 1, a: 1}
     prefab: {fileID: 172504174362418124, guid: 6e68247e53d1a06458fcab82fe686963, type: 3}
+    objType: 0
   - color: {r: 1, g: 1, b: 1, a: 1}
     prefab: {fileID: 3139799916753159590, guid: 5074e684f416d01479abcfca899cc70b, type: 3}
+    objType: 2

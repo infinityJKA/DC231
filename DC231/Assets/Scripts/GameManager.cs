@@ -40,11 +40,17 @@ public class GameManager : MonoBehaviour
         pathfinding = new Pathfinding();
         enemiesAlive.Clear();
 
+        playerStats = PlayerStats.instance;
+
+        // generate biome
+        playerStats.biomeIndex = Random.Range(0,playerStats.biomes.Length);
+
+        // generate dungeon (using Bailey's code)
         dungeonGen.DungeonGenStart();
+
+        // convert dungeon to usable in the game environment
         gridManager.MakeGridFromRooms(dungeonGen,this);
         dungeonGen.gameObject.SetActive(false);
-        
-        playerStats = PlayerStats.instance;
 
         // gridManager.MakeGrid(floorSettings.floorLayout,this);
         

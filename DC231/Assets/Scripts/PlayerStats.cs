@@ -15,6 +15,9 @@ public class PlayerStats : MonoBehaviour
     public GameObject gameOverMenu;
     public bool hoveringOverInventory = false;
 
+    public BiomeInfo[] biomes;
+    public int biomeIndex;
+
     public void ResetPlayerStats(){
         currentHP = 20;
         maxHP = 20;

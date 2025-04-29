@@ -4,6 +4,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RoomInstance : MonoBehaviour
 {
@@ -117,6 +118,23 @@ public class RoomInstance : MonoBehaviour
 
                 Vector3 spawnPos = positionFromTileGrid(x, y-4);
                 GameObject t = Instantiate(mapping.prefab, spawnPos, Quaternion.identity);
+
+                SpriteRenderer s = t.GetComponent<SpriteRenderer>();
+
+                if(mapping.objType == RoomObjectType.Floor)
+                {
+                    s.sprite = PlayerStats.instance.biomes[PlayerStats.instance.biomeIndex].floor;
+                }
+                else if(mapping.objType == RoomObjectType.Wall)
+                {
+                    s.sprite = PlayerStats.instance.biomes[PlayerStats.instance.biomeIndex].wall;
+                }
+                else if(mapping.objType == RoomObjectType.Obstacle)
+                {
+                    s.sprite = PlayerStats.instance.biomes[PlayerStats.instance.biomeIndex].obstacle;
+                }
+
+                
                 t.transform.parent = this.transform;
                 tiles.Add(t);
                

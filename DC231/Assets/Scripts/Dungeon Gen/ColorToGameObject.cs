@@ -7,4 +7,9 @@ public class ColorToGameObject
     
     public Color color;
     public GameObject prefab;
+    public RoomObjectType objType;
+}
+
+public enum RoomObjectType{
+    Obstacle, Wall, Floor
 }
