@@ -12,13 +12,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: enem2
       objectReference: {fileID: 0}
+    - target: {fileID: 811865243949896845, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 811865243949896845, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1988187852455611662, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1988187852455611662, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1988187852455611662, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: m_LocalScale.z
@@ -86,11 +94,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: vision
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: enemyName
-      value: Enemy2
+      value: Skeleton
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: attackRange
@@ -154,8 +162,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 743f63d3c19cd494597bc28b1232c71c, type: 3}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: 89d4c739237d2414da12f2101f4e090d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

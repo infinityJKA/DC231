@@ -10,23 +10,35 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 13348917408222216, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: m_Name
-      value: enem1
+      value: Lich
       objectReference: {fileID: 0}
     - target: {fileID: 811865243949896845, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 811865243949896845, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960891657962909824, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960891657962909824, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960891657962909824, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1988187852455611662, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1988187852455611662, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1988187852455611662, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -70,19 +82,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: atk
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: def
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: res
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: maxHP
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: maxMP
@@ -94,7 +106,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: enemyName
-      value: Enemy1
+      value: Lich
+      objectReference: {fileID: 0}
+    - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
+      propertyPath: attackRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
+      propertyPath: minAttackRange
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1960891657962909824, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
@@ -103,14 +123,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7554671147915595498, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2586267136718834489}
+      addedObject: {fileID: 1858973426701822329}
   m_SourcePrefab: {fileID: 100100000, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
 --- !u!1 &2060751320567880738 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7554671147915595498, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
   m_PrefabInstance: {fileID: 8380872392766608072}
   m_PrefabAsset: {fileID: 0}
---- !u!212 &2586267136718834489
+--- !u!212 &1858973426701822329
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,8 +170,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 80f739fa3edca1a4d9f98243a868a948, type: 3}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 21300000, guid: 8c5d5490fb5a95545a4e38976ef24974, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
