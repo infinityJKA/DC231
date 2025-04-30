@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameOverScript : MonoBehaviour
 {
     public GameObject parentCanvas;
+    [SerializeField] TMP_Text scoreText, highscoreText;
+    [SerializeField] GameObject newHighScore;
     // // Activates this GameObject and all its children
     // public void ActivateGameOverScreen()
     // {
@@ -38,6 +41,26 @@ public class GameOverScript : MonoBehaviour
     //         child.gameObject.SetActive(false);
     //     }
     // }
+
+    public void OnEnable()
+    {
+        int s = PlayerStats.instance.score;
+        
+        // saves high score
+        if(PlayerPrefs.HasKey("HighScore")){
+            if(s > PlayerPrefs.GetInt("HighScore")){
+                PlayerPrefs.SetInt("HighScore",s);
+            }
+        }
+        else{
+            PlayerPrefs.SetInt("HighScore",s);
+        }
+
+        // update text
+        scoreText.text = "Score:\n"+s;
+        highscoreText.text = "High Score:\n"+PlayerPrefs.GetInt("HighScore");
+        newHighScore.SetActive(s == PlayerPrefs.GetInt("HighScore"));
+    }
 
     public void RestartGame()
     {

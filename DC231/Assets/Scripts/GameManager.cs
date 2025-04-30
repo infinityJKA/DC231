@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
         enemiesAlive.Clear();
 
         playerStats = PlayerStats.instance;
+        playerStats.UpdateScoreText();
 
         // generate biome
         playerStats.biomeIndex = Random.Range(0,playerStats.biomes.Length);
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour
 
     private void NextFloor(){
         controlState = ControlState.LoadingGame;
+        playerStats.AddScore((int)(300*(1+(playerStats.dungeonFloor*0.25))));
         playerStats.dungeonFloor += 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -229,6 +231,7 @@ public class GameManager : MonoBehaviour
                     playerStats.logText.text = playerStats.logText.text + "\nFound "+t.currentEntity.GetComponent<Chest>().item.itemName+"!";
                     Destroy(t.currentEntity.gameObject);
                     t.currentEntity = null;
+                    playerStats.AddScore(150);
 
                     Debug.Log("Moving from "+playerTile.x+","+playerTile.y+" to "+t.x+","+t.y);
                     t.currentEntity = playerObject;
@@ -284,6 +287,7 @@ public class GameManager : MonoBehaviour
         if(enem.currentHP <= 0){
             enemiesAlive.Remove(enem.gameObject);
             enem.enemyTile.currentEntity = null;
+            playerStats.AddScore(enem.score);
             playerStats.logText.text = playerStats.logText.text + "\n= Defeated "+enem.enemyName+"!";
             Destroy(enem.gameObject);
             

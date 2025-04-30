@@ -9,11 +9,13 @@ public class PlayerStats : MonoBehaviour
     public int currentHP,maxHP;
     public int dungeonFloor = 1;
     public InventoryManager inventory;
-    public TMP_Text tileInfoText,logText,hpText;
+    public TMP_Text tileInfoText,logText,hpText,scoreText;
     public static PlayerStats instance;
     public GameObject gameplayUI;
     public GameObject gameOverMenu;
     public bool hoveringOverInventory = false;
+
+    public int score;
 
     public BiomeInfo[] biomes;
     public int biomeIndex;
@@ -22,6 +24,7 @@ public class PlayerStats : MonoBehaviour
         currentHP = 20;
         maxHP = 20;
         dungeonFloor = 1;
+        score = 0;
         inventory.ResetInventory();
     }
 
@@ -38,6 +41,15 @@ public class PlayerStats : MonoBehaviour
 
     public void UpdateHPText(){
         hpText.text = "HP: "+currentHP+"/"+maxHP;
+    }
+
+    public void AddScore(int s){
+        score += s;
+        UpdateScoreText();
+    }
+
+    public void UpdateScoreText(){
+        scoreText.text = "Score: "+score;
     }
 
 }
