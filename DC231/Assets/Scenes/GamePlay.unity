@@ -1255,12 +1255,23 @@ MonoBehaviour:
   - {fileID: 6328045308044967830, guid: 22b70e1ecc45faa46ae786ce97a42d58, type: 3}
   - {fileID: 6328045308044967830, guid: 163c0fd4dfb10c340857fbfe03b39da0, type: 3}
   - {fileID: 6328045308044967830, guid: b5b8259dce731fa4cb53b24680396c9d, type: 3}
-  enemies2: []
-  enemies3: []
+  enemies2:
+  - {fileID: 6328045308044967830, guid: b5b8259dce731fa4cb53b24680396c9d, type: 3}
+  - {fileID: 6328045308044967830, guid: dc94d7ec73f535948aad54046f5d13a1, type: 3}
+  - {fileID: 6328045308044967830, guid: a311b8fd29d5e1f4fade7fc71ef5131b, type: 3}
+  - {fileID: 6328045308044967830, guid: dc94d7ec73f535948aad54046f5d13a1, type: 3}
+  - {fileID: 6328045308044967830, guid: a311b8fd29d5e1f4fade7fc71ef5131b, type: 3}
+  - {fileID: 6328045308044967830, guid: 163c0fd4dfb10c340857fbfe03b39da0, type: 3}
+  - {fileID: 6328045308044967830, guid: 22b70e1ecc45faa46ae786ce97a42d58, type: 3}
+  enemies3:
+  - {fileID: 6328045308044967830, guid: a311b8fd29d5e1f4fade7fc71ef5131b, type: 3}
+  - {fileID: 6328045308044967830, guid: dc94d7ec73f535948aad54046f5d13a1, type: 3}
+  - {fileID: 6328045308044967830, guid: 2f745dde6f785cd479d0a8731dd6cd67, type: 3}
   items1:
   - {fileID: 11400000, guid: 29445e183aa2ffc44b537ce11175a2d0, type: 2}
   - {fileID: 11400000, guid: dfbb6ffb15d1f49438ffa9ecfcc5e812, type: 2}
   - {fileID: 11400000, guid: dfbb6ffb15d1f49438ffa9ecfcc5e812, type: 2}
+  - {fileID: 11400000, guid: 2a1c470f7368bea4dbc154c0f7a9a40d, type: 2}
   items2: []
   items3: []
   playerObjectPrefab: {fileID: 13348917408222216, guid: 178375e26afe8bc44b1783b5322e1773, type: 3}

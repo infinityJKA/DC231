@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 13348917408222216, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: m_Name
-      value: enem2
+      value: Ghost
       objectReference: {fileID: 0}
     - target: {fileID: 811865243949896845, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: m_LocalScale.x
@@ -20,16 +20,24 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 1960891657962909824, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960891657962909824, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1960891657962909824, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1988187852455611662, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1988187852455611662, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1988187852455611662, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
-      propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1988187852455611662, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
@@ -74,39 +82,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: atk
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: def
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: res
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: maxHP
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: maxMP
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
+      propertyPath: score
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: vision
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: enemyName
-      value: Skeleton
+      value: Ghost
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: attackRange
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: minAttackRange
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1960891657962909824, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
@@ -115,14 +127,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7554671147915595498, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5993876973789069807}
+      addedObject: {fileID: 1858973426701822329}
   m_SourcePrefab: {fileID: 100100000, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
 --- !u!1 &2060751320567880738 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7554671147915595498, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
   m_PrefabInstance: {fileID: 8380872392766608072}
   m_PrefabAsset: {fileID: 0}
---- !u!212 &5993876973789069807
+--- !u!212 &1858973426701822329
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,7 +175,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 89d4c739237d2414da12f2101f4e090d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 26a4964fed56d2b419d6cf05853ba027, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

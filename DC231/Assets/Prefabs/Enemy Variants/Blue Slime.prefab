@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 13348917408222216, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: m_Name
-      value: Green Slime
+      value: Blue Slime
       objectReference: {fileID: 0}
     - target: {fileID: 811865243949896845, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: m_LocalScale.x
@@ -70,19 +70,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: atk
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: def
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: res
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: maxHP
-      value: 4
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: maxMP
@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: score
-      value: 50
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: vision
@@ -98,7 +98,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
       propertyPath: enemyName
-      value: Green Slime
+      value: Blue Slime
+      objectReference: {fileID: 0}
+    - target: {fileID: 2566889780128492894, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
+      propertyPath: attackRange
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1960891657962909824, guid: 8149c4bd3e95a0c4b923456c864531f3, type: 3}
@@ -155,7 +159,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 7859479612dd59b4dbf9bee1545fa2f0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fecefdc9bca9e5d41b1daa0935803ec5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
