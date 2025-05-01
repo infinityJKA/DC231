@@ -70,16 +70,32 @@ public class GridManager : MonoBehaviour
             Destroy(t.gameObject);
         }
 
-        bool isSpawned = false;
+        // gets enemies/items of the correct floor
+        List<EnemyEntity> toSpawn = gm.enemies1;
+        List<Item> chestItems = gm.items1;
+        int floor = PlayerStats.instance.dungeonFloor;
+        
+        if(floor <= 2){   // list1 floors 1-2
+            // already set as default
+        }
+        else if(floor <=5){ // list2 floors 3-5
+            toSpawn = gm.enemies2;
+            chestItems = gm.items2;
+        }
+        else if(floor <=8){ // list2 floors 6-8
+            toSpawn = gm.enemies3;
+            chestItems = gm.items3;
+        }
 
         // spawn enemies
+        bool isSpawned = false;
         int enemiesToSpawn = Random.Range(10,15);
         for(int i = 0; i < enemiesToSpawn; i++){
             isSpawned = false;
             while(!isSpawned){
                 Tile t = tiles.ElementAt(Random.Range(0,tiles.Count-1)).Value;
                 if(t.currentEntity == null && t != gm.playerTile){
-                    GameObject e = SpawnEntity(gm.enemies1[Random.Range(0,gm.enemies1.Count)].gameObject,t.x,t.y);
+                    GameObject e = SpawnEntity(toSpawn[Random.Range(0,toSpawn.Count)].gameObject,t.x,t.y);
                     gm.enemiesAlive.Add(e);
                     e.GetComponent<EnemyEntity>().enemyTile = t;
                     e.GetComponent<EnemyEntity>().InitializeStats();
@@ -91,14 +107,14 @@ public class GridManager : MonoBehaviour
 
 
         // spawn chests
-        int chestsToSpawn = Random.Range(3,6);
+        int chestsToSpawn = Random.Range(5,10);
         for(int i = 0; i < chestsToSpawn; i++){
             isSpawned = false;
             while(!isSpawned){
                 Tile t = tiles.ElementAt(Random.Range(0,tiles.Count-1)).Value;
                 if(t.currentEntity == null && t != gm.playerTile){
                     var chest = Instantiate(chestPrefab,new Vector2(t.x,t.y),Quaternion.identity);
-                    chest.item = gm.items1[Random.Range(0,gm.items1.Count)];
+                    chest.item = chestItems[Random.Range(0,chestItems.Count)];
                     t.currentEntity = chest.gameObject;
                     isSpawned = true;
                 }
