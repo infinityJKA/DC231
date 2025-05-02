@@ -9,6 +9,7 @@ public class EnemyEntity : MonoBehaviour
     
     [HideInInspector] public int currentHP;
     public string enemyName;
+    public bool canMove = true;
 
     public Tile enemyTile; // the tile the enemy is standing on
 

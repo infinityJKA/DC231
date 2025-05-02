@@ -358,7 +358,9 @@ public class GameManager : MonoBehaviour
 
         GameObject obj = enemiesAlive[currentEnemyTurn];
 
-        Tile originalTile = obj.GetComponent<EnemyEntity>().enemyTile;
+        EnemyEntity enem = obj.GetComponent<EnemyEntity>();
+
+        Tile originalTile = enem.enemyTile;
 
         // Check attack range and attack if valid here
         List<Tile> attackDistance = pathfinding.Astar_Pathfind(originalTile.x,originalTile.y,playerTile.x,playerTile.y,gridManager,PathfindingOption.AttackRange, obj.GetComponent<EnemyEntity>().attackRange);
@@ -370,12 +372,12 @@ public class GameManager : MonoBehaviour
             Debug.Log("No path to attack player");
         }
 
-        if(attackDistance != null && attackDistance.Count-1 >= obj.GetComponent<EnemyEntity>().minAttackRange && obj.GetComponent<EnemyEntity>().attackRange >= attackDistance.Count-1){
+        if(attackDistance != null && attackDistance.Count-1 >= enem.minAttackRange && enem.attackRange >= attackDistance.Count-1){
             Debug.Log("Chose to attack");
             EnemyPerformAttack(originalTile);
         }
         // Check for valid walkable tiles if can't attack
-        else{
+        else if(enem.canMove){
             List<Tile> enemyPathfinding = pathfinding.Astar_Pathfind(originalTile.x,originalTile.y,playerTile.x,playerTile.y,gridManager,PathfindingOption.EnemyMove, obj.GetComponent<EnemyEntity>().vision);
             pathfinding.PrintTileList("Path",enemyPathfinding);
 
@@ -412,10 +414,9 @@ public class GameManager : MonoBehaviour
                     Debug.Log("Enemy couldn't move!");
                 }
             }
-
-
-
-            
+        }
+        else{
+            Debug.Log("Enemy couldn't move!");
         }
         
         currentEnemyTurn++;

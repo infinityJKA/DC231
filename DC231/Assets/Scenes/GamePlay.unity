@@ -503,6 +503,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 36859779667967728, guid: 579476f3e26090f4f83810f0af7e16fe, type: 3}
+      propertyPath: musicSounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: a0964fbba8d6e524b9d461db2353c3c5, type: 3}
+    - target: {fileID: 36859779667967728, guid: 579476f3e26090f4f83810f0af7e16fe, type: 3}
+      propertyPath: musicSounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: a0964fbba8d6e524b9d461db2353c3c5, type: 3}
     - target: {fileID: 6142877002627691851, guid: 579476f3e26090f4f83810f0af7e16fe, type: 3}
       propertyPath: m_Name
       value: Audio Manager
@@ -1260,6 +1268,7 @@ MonoBehaviour:
   - {fileID: 6328045308044967830, guid: dc94d7ec73f535948aad54046f5d13a1, type: 3}
   - {fileID: 6328045308044967830, guid: 2f745dde6f785cd479d0a8731dd6cd67, type: 3}
   - {fileID: 6328045308044967830, guid: 2f745dde6f785cd479d0a8731dd6cd67, type: 3}
+  - {fileID: 6328045308044967830, guid: c27a00301c90ea9478fa728d69ba6ad6, type: 3}
   items1:
   - {fileID: 11400000, guid: e3ee7f15846d871499daed0895155f7d, type: 2}
   - {fileID: 11400000, guid: e3ee7f15846d871499daed0895155f7d, type: 2}
