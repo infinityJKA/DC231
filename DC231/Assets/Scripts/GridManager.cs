@@ -123,14 +123,16 @@ public class GridManager : MonoBehaviour
 
 
 
-        // spawn exit
+        // spawn exits
         isSpawned = false;
-        while(!isSpawned){
-            Tile t = tiles.ElementAt(Random.Range(0,tiles.Count-1)).Value;
-            if(t.currentEntity == null && t != gm.playerTile){
-                GameObject e = SpawnEntity(floorExitPrefab,t.x,t.y);
-                t.currentEntity = e;
-                isSpawned = true;
+        for(int i = 0; i < 2; i++){  // current will spawn 2 exits per floor
+            while(!isSpawned){
+                Tile t = tiles.ElementAt(Random.Range(0,tiles.Count-1)).Value;
+                if(t.currentEntity == null && t != gm.playerTile){
+                    GameObject e = SpawnEntity(floorExitPrefab,t.x,t.y);
+                    t.currentEntity = e;
+                    isSpawned = true;
+                }
             }
         }
 

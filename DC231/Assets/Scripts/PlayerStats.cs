@@ -20,6 +20,23 @@ public class PlayerStats : MonoBehaviour
     public BiomeInfo[] biomes;
     public int biomeIndex;
 
+    public void ChooseBiome(){
+
+        // remove this next line once biomes exist
+        biomeIndex = 0; return;
+        // ^^^^ REMOVE WHEN BIOMES EXIST
+
+        if(dungeonFloor >= 2){
+            biomeIndex = 0;
+        }
+        else if(dungeonFloor >= 5){
+            biomeIndex = 1;
+        }
+        else if(dungeonFloor >= 8){
+            biomeIndex = 2;
+        }
+    }
+
     public void ResetPlayerStats(){
         currentHP = 20;
         maxHP = 20;

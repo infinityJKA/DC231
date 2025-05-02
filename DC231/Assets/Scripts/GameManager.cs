@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         playerStats.UpdateScoreText();
 
         // generate biome
-        playerStats.biomeIndex = Random.Range(0,playerStats.biomes.Length);
+        playerStats.ChooseBiome();
 
         // generate dungeon (using Bailey's code)
         dungeonGen.DungeonGenStart();
