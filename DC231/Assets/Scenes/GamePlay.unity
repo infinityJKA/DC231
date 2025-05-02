@@ -1287,7 +1287,13 @@ MonoBehaviour:
   - {fileID: 6328045308044967830, guid: 9da50d5000fcefe4a86a05a6c997fe88, type: 3}
   - {fileID: 6328045308044967830, guid: 3ca654ccfd6f7d6449f1eaf2296e9be0, type: 3}
   - {fileID: 6328045308044967830, guid: c27a00301c90ea9478fa728d69ba6ad6, type: 3}
-  enemies5: []
+  enemies5:
+  - {fileID: 6328045308044967830, guid: e99ec95618ff5c742b310ebf9fd5ce2a, type: 3}
+  - {fileID: 6328045308044967830, guid: e99ec95618ff5c742b310ebf9fd5ce2a, type: 3}
+  - {fileID: 6328045308044967830, guid: c78b3a595039c9345b6b6fb79b8d36aa, type: 3}
+  - {fileID: 6328045308044967830, guid: 8d9dbe4ac353e6b4fb7eaba9d41e9247, type: 3}
+  - {fileID: 6328045308044967830, guid: 9da50d5000fcefe4a86a05a6c997fe88, type: 3}
+  - {fileID: 6328045308044967830, guid: 8ec8e64020a9a8746abb5c9f5b409450, type: 3}
   items1:
   - {fileID: 11400000, guid: e3ee7f15846d871499daed0895155f7d, type: 2}
   - {fileID: 11400000, guid: e3ee7f15846d871499daed0895155f7d, type: 2}
@@ -1506,7 +1512,7 @@ PrefabInstance:
     - target: {fileID: 2181937987359636680, guid: e9697940d824ac8408a7e6d14181aa9e, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 11400000, guid: 5b3669e53ddab1748bd273692f5479f0, type: 2}
+      objectReference: {fileID: 11400000, guid: 4a973087d2f3c53498ca8e312b682e9b, type: 2}
     - target: {fileID: 8022561207004587321, guid: e9697940d824ac8408a7e6d14181aa9e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2071,9 +2077,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3df95c3d603c61499487f5d47343def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHP: 20
-  maxHP: 20
-  dungeonFloor: 5
+  currentHP: 24
+  maxHP: 24
+  dungeonFloor: 13
   inventory: {fileID: 1643206046}
   tileInfoText: {fileID: 2095426697}
   logText: {fileID: 1507484383}
