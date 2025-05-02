@@ -76,21 +76,26 @@ public class GridManager : MonoBehaviour
         int floor = PlayerStats.instance.dungeonFloor;
         
         if(floor <= 2){   // list1 floors 1-2
+            Debug.Log("Floor is LEVEL 1");
             // already set as default
         }
         else if(floor <=5){ // list2 floors 3-5
+            Debug.Log("Floor is LEVEL 2");
             toSpawn = gm.enemies2;
             chestItems = gm.items2;
         }
         else if(floor <=8){ // list3 floors 6-8
+            Debug.Log("Floor is LEVEL 3");
             toSpawn = gm.enemies3;
             chestItems = gm.items3;
         }
         else if(floor <=12){ // list4 floors 9-13
+            Debug.Log("Floor is LEVEL 4");
             toSpawn = gm.enemies4;
             chestItems = gm.items4;
         }
         else if(floor <=16){ // list4 floors 13-16
+            Debug.Log("Floor is LEVEL 5");
             toSpawn = gm.enemies5;
             chestItems = gm.items5;
         }

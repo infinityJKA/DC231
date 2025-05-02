@@ -22,18 +22,24 @@ public class PlayerStats : MonoBehaviour
 
     public void ChooseBiome(){
 
-        // remove this next line once biomes exist
-        biomeIndex = 0; return;
+        // // remove this next line once biomes exist
+        // biomeIndex = 0; return;
         // ^^^^ REMOVE WHEN BIOMES EXIST
 
-        if(dungeonFloor >= 2){
+        if(dungeonFloor <= 2){
             biomeIndex = 0;
         }
-        else if(dungeonFloor >= 5){
+        else if(dungeonFloor <= 5){
             biomeIndex = 1;
         }
-        else if(dungeonFloor >= 8){
+        else if(dungeonFloor <= 8){
             biomeIndex = 2;
+        }
+        else if(dungeonFloor <= 12){
+            biomeIndex = 3;
+        }
+        else if(dungeonFloor <= 16){
+            biomeIndex = 4;
         }
     }
 

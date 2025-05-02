@@ -2073,7 +2073,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHP: 20
   maxHP: 20
-  dungeonFloor: 12
+  dungeonFloor: 5
   inventory: {fileID: 1643206046}
   tileInfoText: {fileID: 2095426697}
   logText: {fileID: 1507484383}
