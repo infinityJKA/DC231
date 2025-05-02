@@ -82,9 +82,17 @@ public class GridManager : MonoBehaviour
             toSpawn = gm.enemies2;
             chestItems = gm.items2;
         }
-        else if(floor <=8){ // list2 floors 6-8
+        else if(floor <=8){ // list3 floors 6-8
             toSpawn = gm.enemies3;
             chestItems = gm.items3;
+        }
+        else if(floor <=12){ // list4 floors 9-13
+            toSpawn = gm.enemies4;
+            chestItems = gm.items4;
+        }
+        else if(floor <=16){ // list4 floors 13-16
+            toSpawn = gm.enemies5;
+            chestItems = gm.items5;
         }
 
         // spawn enemies
@@ -124,8 +132,8 @@ public class GridManager : MonoBehaviour
 
 
         // spawn exits
-        isSpawned = false;
         for(int i = 0; i < 2; i++){  // current will spawn 2 exits per floor
+            isSpawned = false;
             while(!isSpawned){
                 Tile t = tiles.ElementAt(Random.Range(0,tiles.Count-1)).Value;
                 if(t.currentEntity == null && t != gm.playerTile){

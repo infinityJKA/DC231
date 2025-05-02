@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] FloorSettings floorSettings;
     public List<GameObject> enemiesAlive;
     public int currentEnemyTurn = 0; // the index of the enemy that is currently taking its turn; 
-    public List<EnemyEntity> enemies1,enemies2,enemies3;
-    public List<Item> items1,items2,items3;
+    public List<EnemyEntity> enemies1,enemies2,enemies3,enemies4,enemies5;
+    public List<Item> items1,items2,items3,items4,items5;
 
     [Header("Player Stuff")]
     [SerializeField] GameObject playerObjectPrefab;

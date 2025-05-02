@@ -304,9 +304,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSounds:
   - name: Theme
-    clip: {fileID: 8300000, guid: a03c66fbdcb71414d93346da44e75602, type: 3}
+    clip: {fileID: 8300000, guid: a0964fbba8d6e524b9d461db2353c3c5, type: 3}
   - name: DungeonTheme
-    clip: {fileID: 8300000, guid: a1159c51ed80eb246b1d4639573a1e50, type: 3}
+    clip: {fileID: 8300000, guid: a0964fbba8d6e524b9d461db2353c3c5, type: 3}
   - name: GameOver
     clip: {fileID: 8300000, guid: af2251b3351b8ba45a493f0eadb4b4ac, type: 3}
   sfxSounds:
