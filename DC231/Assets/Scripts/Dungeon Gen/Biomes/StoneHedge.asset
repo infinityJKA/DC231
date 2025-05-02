@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d72d5c48ff104c44be8f97eb6fe10ce, type: 3}
+  m_Name: StoneHedge
+  m_EditorClassIdentifier: 
+  wall: {fileID: -4244548450823318278, guid: f37d02db7b4aa6c44ace7a5f8fd8b6dc, type: 3}
+  floor: {fileID: -4205219489992184039, guid: a9600ef963635a54cbbb06c1fa9f9d21, type: 3}
+  obstacle: {fileID: -894752566163263709, guid: 3453164bf42044a44953cbd6502ebb01, type: 3}

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d72d5c48ff104c44be8f97eb6fe10ce, type: 3}
+  m_Name: Cabin
+  m_EditorClassIdentifier: 
+  wall: {fileID: 5898220166088305376, guid: fd73345a26d52b842964d159a5c4108e, type: 3}
+  floor: {fileID: 5679032066149805371, guid: 127a734a1e86c7f44aa480f20807a93d, type: 3}
+  obstacle: {fileID: 3693703582352453640, guid: 11f4abe429beb2b4b88548047282d7c8, type: 3}
