@@ -218,7 +218,14 @@ public class GameManager : MonoBehaviour
             Debug.Log("An entity is already standing at "+playerTile.x+right+", "+playerTile.y+up+"!");
 
             if(t.currentEntity.GetComponent<EnemyEntity>() != null){ // perform basic attack if walking into enemy
-                PlayerPerformAttack(t.currentEntity.GetComponent<EnemyEntity>());
+                Item i = GetCurrentlyEquippedItem();
+                // Make sure you can actually attack at 1 range
+                if(i == null){
+                    PlayerPerformAttack(t.currentEntity.GetComponent<EnemyEntity>());
+                }
+                else if(i.range[0] == 1){
+                    PlayerPerformAttack(t.currentEntity.GetComponent<EnemyEntity>());
+                }
             }
             else if(t.currentEntity.GetComponent<floorExit>() != null){
                 NextFloor();
