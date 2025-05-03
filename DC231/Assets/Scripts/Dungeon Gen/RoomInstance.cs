@@ -68,19 +68,25 @@ public class RoomInstance : MonoBehaviour
     //places the door or wall at the given position
     void PlaceDoor(Vector3 spawnPos, bool door, GameObject doorSpawn)
     {
-        // check whether its a door or wall, then spawn
-        if (door)
+        // Check whether it's a door or wall, then spawn
+        GameObject t = Instantiate(door ? doorSpawn : doorWall, spawnPos, Quaternion.identity);
+        t.transform.parent = transform;
+
+        // Assign the appropriate sprite
+        SpriteRenderer spriteRenderer = t.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
         {
-            GameObject t = Instantiate(doorSpawn, spawnPos, Quaternion.identity);
-            t.transform.parent = transform;
-            tiles.Add(t);
+            if (door)
+            {
+                spriteRenderer.sprite = PlayerStats.instance.biomes[PlayerStats.instance.biomeIndex].floor;
+            }
+            else
+            {
+                spriteRenderer.sprite = PlayerStats.instance.biomes[PlayerStats.instance.biomeIndex].wall;
+            }
         }
-        else
-        {
-            GameObject t = Instantiate(doorWall, spawnPos, Quaternion.identity);
-            t.transform.parent = transform;
-            tiles.Add(t);
-        }
+
+        tiles.Add(t);
     }
 
 

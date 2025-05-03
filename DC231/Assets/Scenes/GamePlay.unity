@@ -940,7 +940,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 525860401303367042, guid: 23da5bcdb3550a14aa878c19371b7c26, type: 3}
       propertyPath: sheetsNormal.Array.size
-      value: 6
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 525860401303367042, guid: 23da5bcdb3550a14aa878c19371b7c26, type: 3}
       propertyPath: sheetsNormal.Array.data[3]
@@ -954,6 +954,34 @@ PrefabInstance:
       propertyPath: sheetsNormal.Array.data[5]
       value: 
       objectReference: {fileID: -8328923581568760697, guid: fd78cf1a3a5df1d41a20884d0c7881a0, type: 3}
+    - target: {fileID: 525860401303367042, guid: 23da5bcdb3550a14aa878c19371b7c26, type: 3}
+      propertyPath: sheetsNormal.Array.data[6]
+      value: 
+      objectReference: {fileID: -8328923581568760697, guid: d913533a81956d645a7067ea8f810130, type: 3}
+    - target: {fileID: 525860401303367042, guid: 23da5bcdb3550a14aa878c19371b7c26, type: 3}
+      propertyPath: sheetsNormal.Array.data[7]
+      value: 
+      objectReference: {fileID: -8328923581568760697, guid: 38bdcc0d992881a4794fea84c99006ed, type: 3}
+    - target: {fileID: 525860401303367042, guid: 23da5bcdb3550a14aa878c19371b7c26, type: 3}
+      propertyPath: sheetsNormal.Array.data[8]
+      value: 
+      objectReference: {fileID: -8328923581568760697, guid: c29c84f1db1b7584f94964ab3697c950, type: 3}
+    - target: {fileID: 525860401303367042, guid: 23da5bcdb3550a14aa878c19371b7c26, type: 3}
+      propertyPath: sheetsNormal.Array.data[9]
+      value: 
+      objectReference: {fileID: -8328923581568760697, guid: dd311c0e550a47a41b0e778e9fb1630a, type: 3}
+    - target: {fileID: 525860401303367042, guid: 23da5bcdb3550a14aa878c19371b7c26, type: 3}
+      propertyPath: sheetsNormal.Array.data[10]
+      value: 
+      objectReference: {fileID: -8328923581568760697, guid: 6f02ae4c06b2beb4cbd6cdf56ef06975, type: 3}
+    - target: {fileID: 525860401303367042, guid: 23da5bcdb3550a14aa878c19371b7c26, type: 3}
+      propertyPath: sheetsNormal.Array.data[11]
+      value: 
+      objectReference: {fileID: -8328923581568760697, guid: b2eb5072d6d6ff74dac78302aa22a9c9, type: 3}
+    - target: {fileID: 525860401303367042, guid: 23da5bcdb3550a14aa878c19371b7c26, type: 3}
+      propertyPath: sheetsNormal.Array.data[12]
+      value: 
+      objectReference: {fileID: -8328923581568760697, guid: a1b06d25539f9554bbe7152e708cec1d, type: 3}
     - target: {fileID: 2108354561853075853, guid: 23da5bcdb3550a14aa878c19371b7c26, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

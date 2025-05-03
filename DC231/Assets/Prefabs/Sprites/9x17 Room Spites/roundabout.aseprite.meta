@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fd78cf1a3a5df1d41a20884d0c7881a0
+guid: 6f02ae4c06b2beb4cbd6cdf56ef06975
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Tetris
+  - name: roundabout
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 17
       height: 9
-    spriteID: 0e8cf88bbb739404cbe586d83d54131a
+    spriteID: e42d00a84c34b4841bcb1d1a4ac0d6fa
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,13 +144,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1355926627
-    name: Tetris
+    guid: 1708865339
+    name: roundabout
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Tetris
+    - name: roundabout
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -158,7 +158,7 @@ ScriptedImporter:
         y: 0
         width: 17
         height: 9
-      spriteId: 0e8cf88bbb739404cbe586d83d54131a
+      spriteId: e42d00a84c34b4841bcb1d1a4ac0d6fa
     linkedCells: []
     parentIndex: -1
   platformSettings:
