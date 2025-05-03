@@ -94,11 +94,22 @@ public class GridManager : MonoBehaviour
             toSpawn = gm.enemies4;
             chestItems = gm.items4;
         }
-        else if(floor <=16){ // list4 floors 13-16
+        else if(floor <=16){ // list5 floors 13-16
             Debug.Log("Floor is LEVEL 5");
             toSpawn = gm.enemies5;
             chestItems = gm.items5;
         }
+        else if(floor <=21){ // list6 floors 17-21
+            Debug.Log("Floor is LEVEL 6");
+            toSpawn = gm.enemies6;
+            chestItems = gm.items6;
+        }
+        else if(floor <=27){ // list7 floors 22-27
+            Debug.Log("Floor is LEVEL 7");
+            toSpawn = gm.enemies7;
+            chestItems = gm.items7;
+        }
+
 
         // spawn enemies
         bool isSpawned = false;

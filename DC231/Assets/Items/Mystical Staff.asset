@@ -15,7 +15,7 @@ MonoBehaviour:
   tile: {fileID: 0}
   type: 0
   range: {x: 4, y: 4}
-  atkModif: 5
+  atkModif: 6
   healAmount: 0
   hpIncreaseAmount: 0
   stackable: 0

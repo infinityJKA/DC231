@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85bf4157da9d2bd4d8d3dc349f6e0ca5, type: 3}
-  m_Name: Hellfire Sword
+  m_Name: Grimoire of Gust
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
   type: 0
-  range: {x: 1, y: 1}
-  atkModif: 31
+  range: {x: 2, y: 2}
+  atkModif: 25
   healAmount: 0
   hpIncreaseAmount: 0
   stackable: 0
-  itemName: Hellfire Sword
-  image: {fileID: 21300000, guid: b94f00ab274e74849b24eae4a2bebabb, type: 3}
+  itemName: Grimoire of Gust
+  image: {fileID: 21300000, guid: fdb98937bb43cb64ebc3f830f6c2d642, type: 3}
