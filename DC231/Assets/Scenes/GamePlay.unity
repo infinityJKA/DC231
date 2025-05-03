@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 7914456}
   - component: {fileID: 7914455}
   - component: {fileID: 7914454}
-  - component: {fileID: 7914457}
   m_Layer: 0
   m_Name: GameWinCanvas
   m_TagString: Untagged
@@ -231,22 +230,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &7914457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7914452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f3a847134407a84e963885d44401939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentCanvas: {fileID: 7914452}
-  scoreText: {fileID: 1552615616}
-  highscoreText: {fileID: 1928064849}
-  newHighScore: {fileID: 2144246107}
 --- !u!1 &35725130
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,11 +1756,11 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.99607843, b: 0.46666667, a: 1}
+    m_PressedColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1854,7 +1837,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7898c1db85266004e9c8c8b2759bf7c6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 623d0670ad266b44f965db2cdb9c3c3a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2079,11 +2062,11 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.46274513, g: 0.46274513, b: 0.46274513, a: 1}
+    m_PressedColor: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -4354,7 +4337,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4e5d3157a6939d742a145bc240722c59, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4922,6 +4905,7 @@ GameObject:
   - component: {fileID: 1907820024}
   - component: {fileID: 1907820026}
   - component: {fileID: 1907820025}
+  - component: {fileID: 1907820027}
   m_Layer: 0
   m_Name: BlackBG
   m_TagString: Untagged
@@ -4986,6 +4970,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907820023}
   m_CullTransparentMesh: 1
+--- !u!114 &1907820027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907820023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3a847134407a84e963885d44401939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentCanvas: {fileID: 7914452}
+  scoreText: {fileID: 1552615616}
+  highscoreText: {fileID: 1928064849}
+  newHighScore: {fileID: 2144246107}
 --- !u!1 &1908887606 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8281773135728402441, guid: ff571d3e54e8ed245a6b4bc6a2c6e58d, type: 3}
@@ -5278,7 +5278,6 @@ GameObject:
   - component: {fileID: 1976766069}
   - component: {fileID: 1976766068}
   - component: {fileID: 1976766067}
-  - component: {fileID: 1976766066}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -5305,22 +5304,6 @@ RectTransform:
   m_AnchoredPosition: {x: -77, y: 56}
   m_SizeDelta: {x: 81.4017, y: 81.404785}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1976766066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1976766064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f3a847134407a84e963885d44401939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentCanvas: {fileID: 0}
-  scoreText: {fileID: 0}
-  highscoreText: {fileID: 0}
-  newHighScore: {fileID: 0}
 --- !u!114 &1976766067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5353,11 +5336,11 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.99607843, b: 0.46666667, a: 1}
+    m_PressedColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -5378,19 +5361,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameOverScript, Assembly-CSharp
-        m_MethodName: DeactivateGameOverScreen
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 7914457}
+      - m_Target: {fileID: 1907820027}
         m_TargetAssemblyTypeName: GameOverScript, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
@@ -5434,7 +5405,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7898c1db85266004e9c8c8b2759bf7c6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 623d0670ad266b44f965db2cdb9c3c3a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
