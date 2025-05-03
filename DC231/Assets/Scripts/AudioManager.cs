@@ -28,10 +28,10 @@ public class AudioManager : MonoBehaviour
     {
         Debug.Log("AudioManager Start() - Scene: " + SceneManager.GetActiveScene().name);
 
-        if (musicSource.clip == null || !musicSource.isPlaying)
-        {
-            PlayMusic("Theme");
-        }
+        // if (musicSource.clip == null || !musicSource.isPlaying)
+        // {
+        //     PlayMusic("Theme");
+        // }
     }
 
     public void PlayMusic(string name)
@@ -55,6 +55,11 @@ public class AudioManager : MonoBehaviour
             musicSource.loop = (name != "GameOver");
             musicSource.Play();
         }
+    }
+
+    public void StopMusic()
+    {
+        musicSource.Stop();   
     }
 
     public void PlaySFX(string name)

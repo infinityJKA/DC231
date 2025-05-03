@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("You win!");
             playerStats.logText.text = playerStats.logText.text + "\n  [YOU WIN!]";
 
-            AudioManager.Instance.FadeOutMusicAndPlay("GameOver");
+            AudioManager.Instance.StopMusic();
             playerStats.gameplayUI.SetActive(false);
             playerStats.winMenu.SetActive(true);
         }
@@ -396,7 +396,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Player has died!");
             playerStats.logText.text = playerStats.logText.text + "\n  [GAME OVER] You have died.";
 
-            AudioManager.Instance.FadeOutMusicAndPlay("GameOver");
+            AudioManager.Instance.PlayMusic("GameOver");
             playerStats.gameplayUI.SetActive(false);
             playerStats.gameOverMenu.SetActive(true);
 
