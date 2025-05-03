@@ -12,7 +12,7 @@ public class PlayerStats : MonoBehaviour
     public TMP_Text tileInfoText,logText,hpText,scoreText;
     public static PlayerStats instance;
     public GameObject gameplayUI;
-    public GameObject gameOverMenu;
+    public GameObject gameOverMenu,winMenu;
     public bool hoveringOverInventory = false;
 
     public int score;

@@ -45,37 +45,50 @@ public class GameManager : MonoBehaviour
         playerStats = PlayerStats.instance;
         playerStats.UpdateScoreText();
 
-        // generate biome
-        playerStats.ChooseBiome();
+        // check if the game is over yet
+        if(playerStats.dungeonFloor >= 28){
+            controlState = ControlState.GameOver;
+            Debug.Log("You win!");
+            playerStats.logText.text = playerStats.logText.text + "\n  [YOU WIN!]";
 
-        // generate dungeon (using Bailey's code)
-        dungeonGen.DungeonGenStart();
-
-        // convert dungeon to usable in the game environment
-        gridManager.MakeGridFromRooms(dungeonGen,this);
-        dungeonGen.gameObject.SetActive(false);
-
-        // gridManager.MakeGrid(floorSettings.floorLayout,this);
-        
-        bool notSpawned = true;
-        Tile tileToSpawnOn = null;
-        while(notSpawned){
-            int i = Random.Range(0,gridManager.tiles.Count);
-            if(gridManager.tiles.ElementAt(i).Value.currentEntity == null){
-                tileToSpawnOn = gridManager.tiles.ElementAt(i).Value;
-                notSpawned = false;
-            }
+            AudioManager.Instance.FadeOutMusicAndPlay("GameOver");
+            playerStats.gameplayUI.SetActive(false);
+            playerStats.winMenu.SetActive(true);
         }
-        playerObject = Instantiate(playerObjectPrefab);
-        // playerTile = gridManager.GetTileAtPosition(0,0);
-        playerTile = tileToSpawnOn;
-        playerTile.currentEntity = playerObject;
-        playerTile.MoveEntityToTile();
-        SetCamToPlayer();
-        playerStats.logText.text = "[Entered Dungeon Floor "+playerStats.dungeonFloor+"!]";
-        controlState = ControlState.Player;
+        else{
 
-        AudioManager.Instance.PlayMusic("Theme");
+            // generate biome
+            playerStats.ChooseBiome();
+
+            // generate dungeon (using Bailey's code)
+            dungeonGen.DungeonGenStart();
+
+            // convert dungeon to usable in the game environment
+            gridManager.MakeGridFromRooms(dungeonGen,this);
+            dungeonGen.gameObject.SetActive(false);
+
+            // gridManager.MakeGrid(floorSettings.floorLayout,this);
+            
+            bool notSpawned = true;
+            Tile tileToSpawnOn = null;
+            while(notSpawned){
+                int i = Random.Range(0,gridManager.tiles.Count);
+                if(gridManager.tiles.ElementAt(i).Value.currentEntity == null){
+                    tileToSpawnOn = gridManager.tiles.ElementAt(i).Value;
+                    notSpawned = false;
+                }
+            }
+            playerObject = Instantiate(playerObjectPrefab);
+            // playerTile = gridManager.GetTileAtPosition(0,0);
+            playerTile = tileToSpawnOn;
+            playerTile.currentEntity = playerObject;
+            playerTile.MoveEntityToTile();
+            SetCamToPlayer();
+            playerStats.logText.text = "[Entered Dungeon Floor "+playerStats.dungeonFloor+"!]";
+            controlState = ControlState.Player;
+
+            AudioManager.Instance.PlayMusic("Theme");
+        }
     }
 
     private void NextFloor(){
