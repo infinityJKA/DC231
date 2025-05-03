@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d72d5c48ff104c44be8f97eb6fe10ce, type: 3}
-  m_Name: StoneHedge
+  m_Name: Mushroom
   m_EditorClassIdentifier: 
-  wall: {fileID: -4244548450823318278, guid: f37d02db7b4aa6c44ace7a5f8fd8b6dc, type: 3}
-  floor: {fileID: -1753387405264949790, guid: 8182f185e71d8594db32681ded867b65, type: 3}
-  obstacle: {fileID: -894752566163263709, guid: 3453164bf42044a44953cbd6502ebb01, type: 3}
+  wall: {fileID: -2899300217342110954, guid: 041533d8b29c5744e87815d5b499105f, type: 3}
+  floor: {fileID: 3240493298813244094, guid: 5ef5b67c5b2cf8f42a1b7748784e66f7, type: 3}
+  obstacle: {fileID: -3875039917485937966, guid: ef5440c2bd15d8441b057e95e221682b, type: 3}

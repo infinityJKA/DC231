@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d72d5c48ff104c44be8f97eb6fe10ce, type: 3}
-  m_Name: StoneHedge
+  m_Name: Desert
   m_EditorClassIdentifier: 
-  wall: {fileID: -4244548450823318278, guid: f37d02db7b4aa6c44ace7a5f8fd8b6dc, type: 3}
-  floor: {fileID: -1753387405264949790, guid: 8182f185e71d8594db32681ded867b65, type: 3}
-  obstacle: {fileID: -894752566163263709, guid: 3453164bf42044a44953cbd6502ebb01, type: 3}
+  wall: {fileID: -5033031994071342837, guid: bb5ea3294cff09a47bc72a5b9258dc3f, type: 3}
+  floor: {fileID: -5202093523568845739, guid: e9aa39971fe0b8e488a728613d45713d, type: 3}
+  obstacle: {fileID: 7647669999846415603, guid: 8b38c023e38d1b548b90ff1af1e8bd3e, type: 3}

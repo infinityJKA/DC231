@@ -2142,9 +2142,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3df95c3d603c61499487f5d47343def, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHP: 24
-  maxHP: 24
-  dungeonFloor: 1
+  currentHP: 20
+  maxHP: 20
+  dungeonFloor: 8
   inventory: {fileID: 1643206046}
   tileInfoText: {fileID: 2095426697}
   logText: {fileID: 1507484383}
@@ -2157,10 +2157,10 @@ MonoBehaviour:
   biomes:
   - {fileID: 11400000, guid: 790b2fae47846a54893d9d30ae8bfcc5, type: 2}
   - {fileID: 11400000, guid: 7f70a65e66dc2ca4daa4c3f784f4ae31, type: 2}
+  - {fileID: 11400000, guid: 68315e0af61df4647bdfd86207e7eb6a, type: 2}
+  - {fileID: 11400000, guid: 4f89b8f418e19f44ba7de16ea945066d, type: 2}
   - {fileID: 11400000, guid: fee7783ebeb460048a917658cfed3d04, type: 2}
   - {fileID: 11400000, guid: d15a6a741ba119442b445d906ef0b17b, type: 2}
-  - {fileID: 11400000, guid: 790b2fae47846a54893d9d30ae8bfcc5, type: 2}
-  - {fileID: 11400000, guid: fee7783ebeb460048a917658cfed3d04, type: 2}
   - {fileID: 11400000, guid: 3c309e899dc445e448ecf0bae205fce7, type: 2}
   biomeIndex: 0
 --- !u!4 &835812305
