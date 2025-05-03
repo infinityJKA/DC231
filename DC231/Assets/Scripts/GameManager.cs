@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     [Header("Misc")]
     public Tile currentTileHighlight = null;
     [SerializeField] float enemyActionDelay = 0f;
+    [SerializeField] GameObject boulderObject;
+    [SerializeField] Item boulderItem;
 
     void Start(){
         pathfinding = new Pathfinding();
@@ -171,9 +173,53 @@ public class GameManager : MonoBehaviour
                 usedConsumable = true;
                 UseConsumableItem();
             }
+            else if(GetCurrentlyEquippedItem().type == ItemType.Boulder && currentTileHighlight != null){
+                usedConsumable = true;
+                if(currentTileHighlight.currentEntity == null){
+                    List<Tile> tiles = pathfinding.Astar_Pathfind(playerTile.x,playerTile.y,currentTileHighlight.x,currentTileHighlight.y,gridManager,PathfindingOption.AttackRange, 1);
+                    if(tiles == null){
+                        Debug.Log("Too far to place boulder");
+                        return;
+                    }
+                    if(tiles.Count - 1 == 1){
+                        // places boulder
+                        GameObject b = Instantiate(boulderObject);
+                        currentTileHighlight.currentEntity = b;
+                        currentTileHighlight.MoveEntityToTile();
+
+                        // removes from inventory
+                        playerStats.inventory.DeleteItem(playerStats.inventory.inventorySlots[playerStats.inventory.selectedGameSlot].GetComponentInChildren<InventoryItem>());
+
+                        PlayerTookAction();
+                    }
+                }
+                else{
+                    Debug.Log("Can't place boulder, entity already here");
+                }
+            }
         }
         if(currentTileHighlight != null && !usedConsumable){
             if(currentTileHighlight.currentEntity != null & currentTileHighlight.isHoveredOver){
+                // check if boulder
+                if(currentTileHighlight.currentEntity.GetComponent<Boulder>() != null){
+                    // try to add boulder item to inventory
+                    bool added = playerStats.inventory.AddItem(boulderItem);
+                    if(added){
+                        // destroy boulder that was picked up
+                        Destroy(currentTileHighlight.currentEntity.gameObject);
+                        currentTileHighlight.currentEntity = null;
+                        playerStats.logText.text = playerStats.logText.text + "\nPicked up boulder.";
+                        
+                        // progress turn
+                        PlayerTookAction();
+                    }
+                    // if inventory is too full to hold the boulder 
+                    else{
+                        playerStats.logText.text = playerStats.logText.text + "\nINVENTORY IS FULL";
+                    }
+                }
+
+                // otherwise try to attack
                 int minRange = 0;
                 int maxRange = 1;
                 if(GetCurrentlyEquippedItem() != null){

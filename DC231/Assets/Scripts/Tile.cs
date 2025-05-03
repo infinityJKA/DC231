@@ -42,6 +42,10 @@ public class Tile : MonoBehaviour
                 EnemyEntity e = currentEntity.GetComponent<EnemyEntity>();
                 gm.playerStats.tileInfoText.text = e.enemyName+"\n"+e.currentHP+"/"+e.maxHP+" HP\n"+e.minAttackRange+"-"+e.attackRange+" range\n("+x+","+y+")";
             }
+            else if(currentEntity.GetComponent<Boulder>() == true){
+                EnemyEntity e = currentEntity.GetComponent<EnemyEntity>();
+                gm.playerStats.tileInfoText.text = "Awesome Boulder\n("+x+","+y+")";
+            }
             else{
                 gm.playerStats.tileInfoText.text = "Wall\n("+x+","+y+")";
             }

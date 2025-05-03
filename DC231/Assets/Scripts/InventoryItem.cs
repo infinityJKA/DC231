@@ -38,13 +38,16 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if(item.type == ItemType.Weapon){
             PlayerStats.instance.tileInfoText.text = item.itemName+"\n+"+item.atkModif+" ATK\n"+item.range[0]+"-"+item.range[1]+" range";
         }
-        else{
+        else if(item.type == ItemType.Consumable){
             if(item.hpIncreaseAmount > 0){
                 PlayerStats.instance.tileInfoText.text = item.itemName+"\nGain "+item.hpIncreaseAmount+" Max HP";
             }
             else{
                 PlayerStats.instance.tileInfoText.text = item.itemName+"\nHeal "+item.healAmount+" HP";
             }
+        }
+        else{
+            PlayerStats.instance.tileInfoText.text = item.itemName+"\nCan be epically placed and picked up.";
         }
             
     }
