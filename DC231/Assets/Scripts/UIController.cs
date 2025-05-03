@@ -9,7 +9,8 @@ public class UIController : MonoBehaviour
     {
         // Sync sliders with current volume levels
         _musicSlider.value = AudioManager.Instance.musicSource.volume;
-        _sfxSlider.value = AudioManager.Instance.sfxSource.volume;
+        _musicSlider.value = AudioManager.Instance.sfxSource.volume;
+        //_sfxSlider.value = AudioManager.Instance.sfxSource.volume;
     }
 
     public void ToggleMusic()
