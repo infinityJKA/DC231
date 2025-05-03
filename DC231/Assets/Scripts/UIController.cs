@@ -10,8 +10,19 @@ public class UIController : MonoBehaviour
         // Sync sliders with current volume levels
         _musicSlider.value = AudioManager.Instance.musicSource.volume;
         _musicSlider.value = AudioManager.Instance.sfxSource.volume;
-        //_sfxSlider.value = AudioManager.Instance.sfxSource.volume;
+        _sfxSlider.value = AudioManager.Instance.sfxSource.volume;
+
+        AudioManager.Instance.PlayMusic("Theme");
     }
+
+    public void PlayTestSound(){
+        AudioManager.Instance.PlaySFX("FootStep");
+    }
+
+    public void StopMusic(){
+        AudioManager.Instance.StopMusic();
+    }
+
 
     public void ToggleMusic()
     {
