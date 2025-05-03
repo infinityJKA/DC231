@@ -220,36 +220,38 @@ public class GameManager : MonoBehaviour
                 }
 
                 // otherwise try to attack
-                int minRange = 0;
-                int maxRange = 1;
-                if(GetCurrentlyEquippedItem() != null){
-                    maxRange = GetCurrentlyEquippedItem().range[1];
-                    minRange = GetCurrentlyEquippedItem().range[0];
-                }
+                else{
+                    int minRange = 0;
+                    int maxRange = 1;
+                    if(GetCurrentlyEquippedItem() != null){
+                        maxRange = GetCurrentlyEquippedItem().range[1];
+                        minRange = GetCurrentlyEquippedItem().range[0];
+                    }
 
-                List<Tile> tiles = pathfinding.Astar_Pathfind(playerTile.x,playerTile.y,currentTileHighlight.x,currentTileHighlight.y,gridManager,PathfindingOption.AttackRange, maxRange);
-                if(tiles == null){
-                    Debug.Log("Too far to attack");
-                    return;
-                }
-                int dist = tiles.Count - 1;
-                Debug.Log("PlayerMouseAttackDist = "+dist);
-                if(currentTileHighlight.currentEntity.GetComponent<EnemyEntity>()){
-                    if(GetCurrentlyEquippedItem() == null){
-                        if(dist == 1){
+                    List<Tile> tiles = pathfinding.Astar_Pathfind(playerTile.x,playerTile.y,currentTileHighlight.x,currentTileHighlight.y,gridManager,PathfindingOption.AttackRange, maxRange);
+                    if(tiles == null){
+                        Debug.Log("Too far to attack");
+                        return;
+                    }
+                    int dist = tiles.Count - 1;
+                    Debug.Log("PlayerMouseAttackDist = "+dist);
+                    if(currentTileHighlight.currentEntity.GetComponent<EnemyEntity>()){
+                        if(GetCurrentlyEquippedItem() == null){
+                            if(dist == 1){
+                                PlayerPerformAttack(currentTileHighlight.currentEntity.GetComponent<EnemyEntity>());
+                            }
+                            Debug.Log("PlayerMouseAttack enemy is not in attack range (nothing equipped)");
+                        }
+                        else if(minRange <= dist & maxRange >= dist){
                             PlayerPerformAttack(currentTileHighlight.currentEntity.GetComponent<EnemyEntity>());
                         }
-                        Debug.Log("PlayerMouseAttack enemy is not in attack range (nothing equipped)");
-                    }
-                    else if(minRange <= dist & maxRange >= dist){
-                        PlayerPerformAttack(currentTileHighlight.currentEntity.GetComponent<EnemyEntity>());
+                        else{
+                            Debug.Log("PlayerMouseAttack enemy is not in attack range");
+                        }
                     }
                     else{
-                        Debug.Log("PlayerMouseAttack enemy is not in attack range");
+                        Debug.Log("PlayerMouseAttack target is not an enemy");
                     }
-                }
-                else{
-                    Debug.Log("PlayerMouseAttack target is not an enemy");
                 }
             }
         }

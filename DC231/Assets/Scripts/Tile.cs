@@ -40,7 +40,7 @@ public class Tile : MonoBehaviour
         if(currentEntity != null){
             if(currentEntity.GetComponent<EnemyEntity>() == true){
                 EnemyEntity e = currentEntity.GetComponent<EnemyEntity>();
-                gm.playerStats.tileInfoText.text = e.enemyName+"\n"+e.currentHP+"/"+e.maxHP+" HP\n"+e.minAttackRange+"-"+e.attackRange+" range\n("+x+","+y+")";
+                gm.playerStats.tileInfoText.text = e.enemyName+"\n"+e.currentHP+"/"+e.maxHP+" HP\n"+e.atk+"ATK\n"+e.minAttackRange+"-"+e.attackRange+" range\n("+x+","+y+")";
             }
             else if(currentEntity.GetComponent<Boulder>() == true){
                 EnemyEntity e = currentEntity.GetComponent<EnemyEntity>();

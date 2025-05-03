@@ -113,7 +113,7 @@ public class GridManager : MonoBehaviour
 
         // spawn enemies
         bool isSpawned = false;
-        int enemiesToSpawn = Random.Range(10,15);
+        int enemiesToSpawn = 13;
         for(int i = 0; i < enemiesToSpawn; i++){
             isSpawned = false;
             while(!isSpawned){
@@ -131,7 +131,7 @@ public class GridManager : MonoBehaviour
 
 
         // spawn chests
-        int chestsToSpawn = Random.Range(5,10);
+        int chestsToSpawn = 10;
         for(int i = 0; i < chestsToSpawn; i++){
             isSpawned = false;
             while(!isSpawned){

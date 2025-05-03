@@ -41,6 +41,12 @@ public class PlayerStats : MonoBehaviour
         else if(dungeonFloor <= 16){
             biomeIndex = 4;
         }
+        else if(dungeonFloor <= 21){
+            biomeIndex = 5;
+        }
+        else if(dungeonFloor <= 27){
+            biomeIndex = 6;
+        }
     }
 
     public void ResetPlayerStats(){
