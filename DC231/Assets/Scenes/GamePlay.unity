@@ -2150,6 +2150,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7f70a65e66dc2ca4daa4c3f784f4ae31, type: 2}
   - {fileID: 11400000, guid: fee7783ebeb460048a917658cfed3d04, type: 2}
   - {fileID: 11400000, guid: d15a6a741ba119442b445d906ef0b17b, type: 2}
+  - {fileID: 11400000, guid: 790b2fae47846a54893d9d30ae8bfcc5, type: 2}
+  - {fileID: 11400000, guid: fee7783ebeb460048a917658cfed3d04, type: 2}
   - {fileID: 11400000, guid: 3c309e899dc445e448ecf0bae205fce7, type: 2}
   biomeIndex: 0
 --- !u!4 &835812305
